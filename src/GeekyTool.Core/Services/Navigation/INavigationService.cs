@@ -13,8 +13,9 @@
 // </license>
 // ****************************************************************************
 
+
 // ReSharper disable once CheckNamespace
-namespace NNE.Core.Services
+namespace GeekyTool.Core.Services
 {
     /// <summary>
     ///     NavigationService contract definition.
