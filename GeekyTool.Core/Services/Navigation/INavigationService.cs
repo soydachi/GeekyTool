@@ -13,6 +13,7 @@
 // </license>
 // ****************************************************************************
 
+// ReSharper disable once CheckNamespace
 namespace NNE.Core.Services
 {
     /// <summary>
@@ -60,19 +61,5 @@ namespace NNE.Core.Services
         ///     to the new page.
         /// </param>
         void NavigateTo(string pageKey, object parameter);
-
-        // ToDo add to UAP implementation
-        ///// <summary>
-        /////     Removes the BackStack history of navigation.
-        ///// </summary>
-        //void ClearNavigationHistory();
-
-        ///// <summary>
-        /////     Go back navigation.
-        ///// </summary>
-        ///// <summary>
-        /////     Remove the last page of the BackStack from the navigation history
-        ///// </summary>
-        //void RemoveLastPageFromNavigationHistory();
     }
 }
