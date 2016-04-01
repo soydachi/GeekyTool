@@ -1,17 +1,47 @@
-# GeekyTool   #MadeInSpain
-A Windows Platform Toolkit to simplify #dev life
+![GeekyTool](https://raw.github.com/dachibox/GeekyTool/dev/assets/GeekyToolHeader.png)
 
-- This version is beta and only supports Universal Windows Platform (UWP)
+[**GeekyTool**](https://github.com/dachibox/GeekyTool) is a simple .NET toolkit inspired on [MVVMLight](https://mvvmlight.codeplex.com/), [Cimbalino Toollkit](https://github.com/Cimbalino/Cimbalino-Toolkit) and [Template10](https://github.com/Windows-XAML/Template10).
 
-### How to use it
-Simply fork this project and add to your solution or add his dynamic libarary as Reference
+## Install GeekyTool using [NuGet](https://www.nuget.org/packages/GeekyTool/) ![Latest stable version](https://img.shields.io/nuget/v/GeekyTool.svg?style=flat-square "Latest stable version")
 
-* Now you can download it as a Nuget Package! Try it now!
-`PM> Install-Package GeekyTheory.Toolkit`
+```
+Install-Package GeekyTool
+```
 
-###License
 
-    Copyright 2015 GeekyTheory (Dachi Gogotchuri)
+## Documentation
+
+See [wiki](https://github.com/dachibox/GeekyTool/wiki) _(under construction...)_
+
+
+
+
+## Supported platforms
+
+GeekyTool is a **Portable Class Library** implemented on each specific platforms:
+
+- **.NET** >= 4.5
+- **UWP**
+
+
+## Author
+
+| [![Dachi](https://avatars1.githubusercontent.com/u/1771785?v=3&s=130)](https://github.com/dachibox) |
+|---|---|
+| [Dachi Gogotchuri](https://github.com/dachibox) |
+
+## Contributors
+
+| [![Garolard](https://avatars2.githubusercontent.com/u/1324904?v=3&s=100)](https://github.com/garolard) |
+|---|---|
+| [Gabriel Ferreiro](https://github.com/garolard) |
+
+## License
+
+[Apache License](https://github.com/dachibox/GeekyTool/master/LICENSE)
+
+
+    Copyright 2015 Dachi Gogotchuri
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
