@@ -23,6 +23,7 @@ GeekyTool is a **Portable Class Library** implemented on each specific platforms
 - **.NET** >= 4.5
 - **UWP**
 
+You can fin all the UWP code examples under `samples\UWP` ([@github](https://github.com/dachibox/GeekyTool/tree/dev/samples/UWP/SimpleMVVM)) folder.
 
 ## Author
 
