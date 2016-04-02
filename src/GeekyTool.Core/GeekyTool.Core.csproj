@@ -40,7 +40,7 @@
     <Compile Include="Base\BindableBase.cs" />
     <Compile Include="Base\DelegateCommand.cs" />
     <Compile Include="Base\DelegateCommandAsync.cs" />
-    <Compile Include="Base\ViewModelBase.cs" />
+    <Compile Include="Base\BaseViewModel.cs" />
     <Compile Include="Extensions\IEnumerablesExtensions.cs" />
     <Compile Include="Helpers\OptimizedObservableCollection.cs" />
     <Compile Include="Properties\Annotations.cs" />
