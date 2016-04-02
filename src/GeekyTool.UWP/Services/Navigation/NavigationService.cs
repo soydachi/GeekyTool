@@ -25,7 +25,7 @@ namespace GeekyTool.Services
         /// </summary>
         public const string UnknownPageKey = "-- UNKNOWN --";
 
-        private readonly Dictionary<string, Type> _pagesByKey = new Dictionary<string, Type>();
+        private readonly Dictionary<string, Type> pagesByKey = new Dictionary<string, Type>();
 
         private readonly Frame navigationFrame;
 
@@ -55,9 +55,9 @@ namespace GeekyTool.Services
 
         public void NavigateTo(string pageKey, object parameter)
         {
-            lock (_pagesByKey)
+            lock (pagesByKey)
             {
-                if (!_pagesByKey.ContainsKey(pageKey))
+                if (!pagesByKey.ContainsKey(pageKey))
                 {
                     throw new ArgumentException(
                         $"No such page: {pageKey}. Did you forget to call NavigationService.Configure?",
@@ -65,7 +65,7 @@ namespace GeekyTool.Services
                 }
                 
                 var frame = navigationFrame ?? (Frame)Window.Current.Content;
-                frame.Navigate(_pagesByKey[pageKey], parameter);
+                frame.Navigate(pagesByKey[pageKey], parameter);
             }
         }
 
@@ -73,7 +73,7 @@ namespace GeekyTool.Services
         {
             get
             {
-                lock (_pagesByKey)
+                lock (pagesByKey)
                 {
                     var frame = navigationFrame ?? (Frame)Window.Current.Content;
 
@@ -89,12 +89,12 @@ namespace GeekyTool.Services
 
                     var currentType = frame.Content.GetType();
 
-                    if (_pagesByKey.All(p => p.Value != currentType))
+                    if (pagesByKey.All(p => p.Value != currentType))
                     {
                         return UnknownPageKey;
                     }
 
-                    var item = _pagesByKey.FirstOrDefault(
+                    var item = pagesByKey.FirstOrDefault(
                         i => i.Value == currentType);
 
                     return item.Key;
@@ -104,20 +104,20 @@ namespace GeekyTool.Services
 
         public void Configure(string key, Type pageType)
         {
-            lock (_pagesByKey)
+            lock (pagesByKey)
             {
-                if (_pagesByKey.ContainsKey(key))
+                if (pagesByKey.ContainsKey(key))
                 {
                     throw new ArgumentException("This key is already used: " + key);
                 }
 
-                if (_pagesByKey.Any(p => p.Value == pageType))
+                if (pagesByKey.Any(p => p.Value == pageType))
                 {
                     throw new ArgumentException(
-                        "This type is already configured with key " + _pagesByKey.First(p => p.Value == pageType).Key);
+                        "This type is already configured with key " + pagesByKey.First(p => p.Value == pageType).Key);
                 }
 
-                _pagesByKey.Add(
+                pagesByKey.Add(
                     key,
                     pageType);
             }
