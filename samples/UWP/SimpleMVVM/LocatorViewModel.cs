@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
+using GeekyTool.Core.Messaging;
 using GeekyTool.Core.Services;
 using GeekyTool.Services;
 using SimpleMVVM.ViewModels;
@@ -22,6 +18,7 @@ namespace SimpleMVVM
             // Interfaces
             var navigationService = ConfigureNavigationService();
             builder.Register(INavigationService => navigationService);
+            builder.RegisterType<Messenger>().As<IMessenger>();
 
             // ViewModels
             builder.RegisterType<MainViewModel>();
