@@ -24,7 +24,10 @@ namespace GeekyTool.Core.Messaging
 
         private readonly object messagingDictionaryLock = new object();
 
-
+        public Messenger()
+        {
+            messaging = new Dictionary<Type, Dictionary<object, IMessageBus>>();
+        }
 
         /// <summary>
         /// Returns the default instance of the <see cref="Messenger" />-Class.
@@ -141,7 +144,12 @@ namespace GeekyTool.Core.Messaging
             lock (messagingDictionaryLock)
             {
                 if (!messaging.ContainsKey(messageType))
-                    messaging.Add(messageType, new Dictionary<object, IMessageBus>());
+                {
+                    var dictionary = new Dictionary<object, IMessageBus>();
+                    dictionary.Add(token, new WeakMessageBus());
+                    messaging.Add(messageType, dictionary);
+                }
+                    
                 var tokenizedBusDictionary = messaging[messageType];
 
                 var messageBus = tokenizedBusDictionary[token];
