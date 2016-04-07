@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using GeekyTool.Core.Helpers;
 
@@ -17,6 +18,22 @@ namespace GeekyTool.Core.Extensions
         public static OptimizedObservableCollection<T> ToOptimizedObservableCollection<T>(this IList<T> source)
         {
             var result = new OptimizedObservableCollection<T>();
+            foreach (var item in source)
+                result.Add(item);
+            return result;
+        }
+
+        public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> source)
+        {
+            var result = new ObservableCollection<T>();
+            foreach (var item in source)
+                result.Add(item);
+            return result;
+        }
+
+        public static ObservableCollection<T> ToObservableCollection<T>(this IList<T> source)
+        {
+            var result = new ObservableCollection<T>();
             foreach (var item in source)
                 result.Add(item);
             return result;

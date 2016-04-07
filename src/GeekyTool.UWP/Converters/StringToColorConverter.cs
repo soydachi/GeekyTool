@@ -1,17 +1,21 @@
 ﻿using System;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
+using GeekyTool.Extensions;
 
 namespace GeekyTool.Converters
 {
-    public class InverseBoolToVisibilityConverter : IValueConverter
+    public class StringToColorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var nullable = value as bool?;
-            if (nullable.HasValue && nullable.Value)
-                return Visibility.Collapsed;
-            return Visibility.Visible;
+            var retVal = string.Empty;
+            if (value is string)
+            {
+                retVal = (string)value;
+                return retVal.GetColorFromHexa();
+            }
+            else
+                return value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

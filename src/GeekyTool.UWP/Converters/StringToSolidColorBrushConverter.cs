@@ -1,7 +1,6 @@
 ﻿using System;
-using Windows.UI;
 using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media;
+using GeekyTool.Extensions;
 
 namespace GeekyTool.Converters
 {
@@ -12,15 +11,8 @@ namespace GeekyTool.Converters
             var retVal = string.Empty;
             if (value is string)
             {
-                retVal = (string) value;
-                return new SolidColorBrush(
-                    Color.FromArgb(
-                        255,
-                        System.Convert.ToByte(retVal.Substring(1, 2), 16),
-                        System.Convert.ToByte(retVal.Substring(3, 2), 16),
-                        System.Convert.ToByte(retVal.Substring(5, 2), 16)
-                        )
-                    );
+                retVal = (string)value;
+                return retVal.GetBrushColorFromHexa();
             }
             else
                 return value;
