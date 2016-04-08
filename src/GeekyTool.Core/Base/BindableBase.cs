@@ -4,7 +4,7 @@ using GeekyTool.Core.Annotations;
 
 namespace GeekyTool.Core.Base
 {
-    public class BindableBase : INotifyPropertyChanged
+    public abstract class BindableBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -14,7 +14,7 @@ namespace GeekyTool.Core.Base
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public virtual bool Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
+        protected virtual bool Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
         {
             if (object.Equals(storage, value))
                 return false;

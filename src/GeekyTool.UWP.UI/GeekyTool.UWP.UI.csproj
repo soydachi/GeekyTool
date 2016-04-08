@@ -113,6 +113,10 @@
     <EmbeddedResource Include="Properties\GeekyTool.UWP.UI.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GeekyTool.Core\GeekyTool.Core.csproj">
+      <Project>{113dbc6b-abdf-4f6e-b55b-d4f3efa38da7}</Project>
+      <Name>GeekyTool.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GeekyTool.UWP\GeekyTool.UWP.csproj">
       <Project>{406c87b7-74a4-444d-b8fa-9a9dbb10c957}</Project>
       <Name>GeekyTool.UWP</Name>

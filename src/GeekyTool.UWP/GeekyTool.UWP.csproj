@@ -107,6 +107,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\UwpBaseViewModel.cs" />
     <Compile Include="Base\PageBase.cs" />
     <Compile Include="Converters\BooleanNegationConverter.cs" />
     <Compile Include="Converters\BooleanToInverseVisibilityConverter.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Extensions\EncodeExtensions.cs" />
     <Compile Include="Extensions\XamlExtensions.cs" />
     <Compile Include="Helpers\VisualTreeHelper.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Navigation\NavigationService.cs" />
     <EmbeddedResource Include="Properties\GeekyTool.UWP.rd.xml" />

@@ -76,6 +76,14 @@ namespace GeekyTool.Core.Base
         private Func<T, bool> canExecute;
 
         /// <summary>
+        ///     Constructor not using canExecute.
+        /// </summary>
+        /// <param name="execute"></param>
+        public DelegateCommand(Action<T> execute) : this(execute, null)
+        {
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="DelegateCommand{T}"/> class.
         /// </summary>
         /// <param name="exec">The execute.</param>
