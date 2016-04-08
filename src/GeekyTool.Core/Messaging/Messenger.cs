@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace GeekyTool.Core.Messaging
 {
@@ -117,9 +118,55 @@ namespace GeekyTool.Core.Messaging
         /// </summary>
         /// <typeparam name="T">Type of message.</typeparam>
         /// <param name="callback">Callback-Method, who work with he message.</param>
+        public void Register<T>(Func<T, Task> callback)
+        {
+            Register(callback, DefaultToken);
+        }
+
+        /// <summary>
+        /// Registers a callback method for a particular message type with the default token.
+        /// </summary>
+        /// <typeparam name="T">Type of message.</typeparam>
+        /// <param name="callback">Callback-Method, who work with he message.</param>
         public void Register<T>(Action<T> callback)
         {
             Register(callback, DefaultToken);
+        }
+
+        /// <summary>
+        /// Registers a callback method for a particular message type 
+        /// with a specific token.
+        /// </summary>
+        /// <typeparam name="T">Type of message.</typeparam>
+        /// <param name="callback">Callback-Method, who work with he message.</param>
+        /// <param name="token">Token.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Occurs when one of the parameters is <c>null</c>.
+        /// </exception>
+        public void Register<T>(Func<T, Task> callback, object token)
+        {
+            if (callback == null)
+                throw new ArgumentNullException(MemberResolver.Resolve(() => callback).Name);
+
+            if (token == null)
+                throw new ArgumentNullException(MemberResolver.Resolve(() => token).Name);
+
+            Type messageType = typeof(T);
+            lock (messagingDictionaryLock)
+            {
+                if (!messaging.ContainsKey(messageType))
+                {
+                    var dictionary = new Dictionary<object, IMessageBus>();
+                    dictionary.Add(token, new WeakMessageBus());
+                    messaging.Add(messageType, dictionary);
+                }
+                    
+                var tokenizedBusDictionary = messaging[messageType];
+
+                var messageBus = tokenizedBusDictionary[token];
+
+                messageBus.AddCallback(callback);
+            }
         }
 
         /// <summary>
@@ -149,7 +196,7 @@ namespace GeekyTool.Core.Messaging
                     dictionary.Add(token, new WeakMessageBus());
                     messaging.Add(messageType, dictionary);
                 }
-                    
+
                 var tokenizedBusDictionary = messaging[messageType];
 
                 var messageBus = tokenizedBusDictionary[token];
@@ -164,7 +211,7 @@ namespace GeekyTool.Core.Messaging
         /// </summary>
         /// <typeparam name="T">Type of message.</typeparam>
         /// <param name="callback">Callback-Method.</param>
-        public void Unregister<T>(Action<T> callback)
+        public void Unregister<T>(Func<T, Task> callback)
         {
             Unregister(callback, DefaultToken);
         }
@@ -177,7 +224,7 @@ namespace GeekyTool.Core.Messaging
         /// <param name="callback">Callback-Method.</param>
         /// <param name="token">Token.</param>
         /// <exception cref="ArgumentNullException"><paramref name=""/> is <see langword="null" />.</exception>
-        public void Unregister<T>(Action<T> callback, object token)
+        public void Unregister<T>(Func<T, Task> callback, object token)
         {
             if (callback == null)
                 throw new ArgumentNullException(MemberResolver.Resolve(() => callback).Name);

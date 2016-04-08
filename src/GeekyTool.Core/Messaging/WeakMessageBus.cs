@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace GeekyTool.Core.Messaging
 {
@@ -34,6 +35,23 @@ namespace GeekyTool.Core.Messaging
         /// <exception cref="ArgumentNullException">
         /// Dispatched when <paramref name="callback" /> is equal <c>null</c>.
         /// </exception>
+        public void AddCallback<T>(Func<T, Task> callback)
+        {
+            if (callback == null)
+                throw new ArgumentNullException(MemberResolver.Resolve(() => callback).Name);
+
+            var weakAction = new WeakDelegate(callback);
+            callbacks.Add(weakAction);
+        }
+
+        /// <summary>
+        /// Adds a callback method to add to the collection.
+        /// </summary>
+        /// <typeparam name="T">Type of message.</typeparam>
+        /// <param name="callback">Callback-Method.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Dispatched when <paramref name="callback" /> is equal <c>null</c>.
+        /// </exception>
         public void AddCallback<T>(Action<T> callback)
         {
             if (callback == null)
@@ -50,6 +68,28 @@ namespace GeekyTool.Core.Messaging
         public void RemoveAllCallbacks(object target)
         {
             int count = callbacks.RemoveWhere(cb => Object.ReferenceEquals(cb.TargetReference.Target, target));
+            DebuggingOutput(count);
+        }
+
+        /// <summary>
+        /// Removes a callback method from the collection.
+        /// </summary>
+        /// <typeparam name="T">Type of message.</typeparam>
+        /// <param name="callback">Callback-Method.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Dispatched when <paramref name="callback" /> is equal <c>null</c>.
+        /// </exception>
+        public void RemoveCallback<T>(Func<T, Task> callback)
+        {
+            if (callback == null)
+                throw new ArgumentNullException(MemberResolver.Resolve(() => callback).Name);
+
+            int count = callbacks.RemoveWhere(cb =>
+            {
+                bool sameTarget = Object.ReferenceEquals(cb.TargetReference.Target, callback.Target);
+                bool sameMethod = cb.Method == callback.GetMethodInfo();
+                return sameTarget && sameMethod;
+            });
             DebuggingOutput(count);
         }
 

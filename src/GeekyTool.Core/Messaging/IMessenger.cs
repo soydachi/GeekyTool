@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace GeekyTool.Core.Messaging
 {
@@ -28,7 +29,22 @@ namespace GeekyTool.Core.Messaging
         /// <typeparam name="T">Type of Message.</typeparam>
         /// <param name="callback">Callback-Method, who work with he message.</param>
         /// <param name="token">Token.</param>
+        void Register<T>(Func<T, Task> callback, object token);
+
+        /// <summary>
+        /// Register a Callback-Method for certain message and a certain Token.
+        /// </summary>
+        /// <typeparam name="T">Type of Message.</typeparam>
+        /// <param name="callback">Callback-Method, who work with he message.</param>
+        /// <param name="token">Token.</param>
         void Register<T>(Action<T> callback, object token);
+
+        /// <summary>
+        /// Register a Callback-Method for the default Token with a certain message.
+        /// </summary>
+        /// <typeparam name="T">Type of Message.</typeparam>
+        /// <param name="callback">Callback-Method, who work with he message.</param>
+        void Register<T>(Func<T, Task> callback);
 
         /// <summary>
         /// Register a Callback-Method for the default Token with a certain message.
@@ -43,13 +59,13 @@ namespace GeekyTool.Core.Messaging
         /// <typeparam name="T">Type of Message.</typeparam>
         /// <param name="callback">Callback-Method.</param>
         /// <param name="token">Token.</param>
-        void Unregister<T>(Action<T> callback, object token);
+        void Unregister<T>(Func<T, Task> callback, object token);
 
         /// <summary>
         /// Erase a Callback-Method for a certain message, with the default Token.
         /// </summary>
         /// <typeparam name="T">Type of Message.</typeparam>
         /// <param name="callback">Callback-Method.</param>
-        void Unregister<T>(Action<T> callback);
+        void Unregister<T>(Func<T, Task> callback);
     }
 }

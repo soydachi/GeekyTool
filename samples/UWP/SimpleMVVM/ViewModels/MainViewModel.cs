@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Popups;
+using Windows.UI.Xaml.Navigation;
 using GeekyTool.Core.Base;
 using GeekyTool.Core.Messaging;
 using GeekyTool.Core.Services;
@@ -10,7 +11,7 @@ using SimpleMVVM.Views;
 
 namespace SimpleMVVM.ViewModels
 {
-    public class MainViewModel : BaseViewModel, INavigable
+    public class MainViewModel : BaseViewModel, INavigable<NavigationEventArgs>
     {
         private readonly INavigationService navigationService;
         private readonly IMessenger messenger;
@@ -28,12 +29,12 @@ namespace SimpleMVVM.ViewModels
             SendMessengerObject = new DelegateCommand(SendMessengerObjectDelegate);
         }
 
-        public Task OnNavigatedFrom(object e)
+        public Task OnNavigatedFrom(NavigationEventArgs e)
         {
             return Task.CompletedTask;
         }
 
-        public Task OnNavigatedTo(object e)
+        public Task OnNavigatedTo(NavigationEventArgs e)
         {
             return Task.CompletedTask;
         }

@@ -2,13 +2,14 @@
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Xaml.Navigation;
 using GeekyTool.Core.Base;
 using GeekyTool.Core.Services;
 using GeekyTool.Extensions;
 
 namespace GeekyTool.UISamples.ViewModels
 {
-    public class MainViewModel : BaseViewModel, INavigable
+    public class MainViewModel : BaseViewModel, INavigable<NavigationEventArgs>
     {
         public MainViewModel()
         {
@@ -22,12 +23,12 @@ namespace GeekyTool.UISamples.ViewModels
             ShowDialogCommand = new DelegateCommand(ShowDialogCommandDelegate);
         }
 
-        public Task OnNavigatedFrom(object e)
+        public Task OnNavigatedFrom(NavigationEventArgs e)
         {
             return Task.CompletedTask;
         }
 
-        public Task OnNavigatedTo(object e)
+        public Task OnNavigatedTo(NavigationEventArgs e)
         {
             return Task.CompletedTask;
         }
