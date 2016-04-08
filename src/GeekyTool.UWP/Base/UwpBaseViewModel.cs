@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Core;
 using GeekyTool.Core.Base;
@@ -7,7 +7,7 @@ using GeekyTool.Services;
 
 namespace GeekyTool.Base
 {
-    public abstract class UwpBaseViewModel : BaseViewModel
+    public abstract class UwpBaseViewModel : BaseViewModel, INavigable
     {
         protected CoreDispatcher MainDispatcher => Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher;
 
@@ -30,6 +30,16 @@ namespace GeekyTool.Base
         {
             NavigationService.NavigateTo(pageName);
             ((NavigationService)NavigationService).ClearNavigationHistory();
+        }
+
+        public virtual Task OnNavigatedFrom<NavigationEventArgs>(NavigationEventArgs e)
+        {
+            return Task.CompletedTask;
+        }
+
+        public virtual Task OnNavigatedTo<NavigationEventArgs>(NavigationEventArgs e)
+        {
+            return Task.CompletedTask;
         }
     }
 }
