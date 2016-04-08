@@ -1,19 +1,12 @@
-﻿using System.Threading.Tasks;
-
-namespace GeekyTool.Core.Base
+﻿namespace GeekyTool.Core.Base
 {
     public abstract class BaseViewModel : BindableBase
     {
         private bool isBusy;
-
-        public bool IsBusy
+        protected bool IsBusy
         {
             get { return isBusy; }
-            set
-            {
-                isBusy = value;
-                OnPropertyChanged();
-            }
+            set { Set(ref isBusy, value); }
         }
     }
 }

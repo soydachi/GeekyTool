@@ -13,6 +13,7 @@
             <CommandBar.Content>
                 <Grid/>
             </CommandBar.Content>
+            <AppBarButton Icon="Shuffle" Label="Messenger" Command="{Binding SendMessengerObject}"/>
             <AppBarButton Icon="Send" Label="Send" Command="{Binding NavigateToNexStep}"/>
         </CommandBar>
     </base:PageBase.BottomAppBar>

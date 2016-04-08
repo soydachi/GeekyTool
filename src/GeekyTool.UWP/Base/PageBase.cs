@@ -20,9 +20,9 @@ namespace GeekyTool.Base
 
             viewModel = (BaseViewModel) this.DataContext;
 
-            if (this.DataContext is INavigable)
+            if (this.DataContext is INavigable<NavigationEventArgs>)
             {
-                var navigableVm = viewModel as INavigable;
+                var navigableVm = viewModel as INavigable<NavigationEventArgs>;
                 await navigableVm.OnNavigatedTo(e);
             }
         }
@@ -31,9 +31,9 @@ namespace GeekyTool.Base
         {
             base.OnNavigatedFrom(e);
 
-            if (this.DataContext is INavigable)
+            if (this.DataContext is INavigable<NavigationEventArgs>)
             {
-                var navigableVm = viewModel as INavigable;
+                var navigableVm = viewModel as INavigable<NavigationEventArgs>;
                 await navigableVm.OnNavigatedFrom(e);
             }
         }

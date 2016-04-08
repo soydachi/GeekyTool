@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
 using GeekyTool.Core.Base;
 using GeekyTool.Core.Services;
@@ -10,7 +6,7 @@ using SimpleMVVM.Models;
 
 namespace SimpleMVVM.ViewModels
 {
-    public class DetailViewModel : BaseViewModel, INavigable
+    public class DetailViewModel : BaseViewModel, INavigable<NavigationEventArgs>
     {
         private readonly INavigationService navigationService;
 
@@ -21,18 +17,16 @@ namespace SimpleMVVM.ViewModels
             Person = new Person();
         }
 
-        public Task OnNavigatedFrom(object e)
+        public Task OnNavigatedFrom(NavigationEventArgs e)
         {
             return Task.CompletedTask;
         }
 
-        public Task OnNavigatedTo(object e)
+        public Task OnNavigatedTo(NavigationEventArgs e)
         {
-            var navigation = (NavigationEventArgs) e;
-
-            if (navigation.Parameter is Person)
+            if (e.Parameter is Person)
             {
-                Person = (Person) navigation.Parameter;
+                Person = (Person) e.Parameter;
             }
 
             return Task.CompletedTask;
