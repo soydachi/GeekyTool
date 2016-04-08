@@ -1,41 +1,36 @@
 ﻿using Autofac;
-using GeekyTool.Core.Messaging;
 using GeekyTool.Core.Services;
 using GeekyTool.Services;
-using SimpleMVVM.ViewModels;
-using SimpleMVVM.Views;
+using GeekyTool.UISamples.ViewModels;
+using GeekyTool.UISamples.Views;
 
-namespace SimpleMVVM
+namespace GeekyTool.UISamples
 {
-    public class LocatorViewModel
+    public class ViewModelLocator
     {
-        static IContainer container;
+        readonly IContainer container;
 
-        public LocatorViewModel()
+        public ViewModelLocator()
         {
             var builder = new ContainerBuilder();
 
             // Interfaces
             var navigationService = ConfigureNavigationService();
             builder.Register(INavigationService => navigationService);
-            builder.RegisterType<Messenger>().As<IMessenger>();
 
             // ViewModels
             builder.RegisterType<MainViewModel>();
-            builder.RegisterType<DetailViewModel>();
 
             container = builder.Build();
         }
 
         public MainViewModel MainViewModel => container.Resolve<MainViewModel>();
-        public DetailViewModel DetailViewModel => container.Resolve<DetailViewModel>();
 
-        public INavigationService ConfigureNavigationService()
+        private INavigationService ConfigureNavigationService()
         {
             var navigationService = new NavigationService();
 
             navigationService.Configure("MainView", typeof(MainView));
-            navigationService.Configure("DetailView", typeof(DetailView));
 
             return navigationService;
         }

@@ -2,7 +2,9 @@
 
 [**GeekyTool**](https://github.com/dachibox/GeekyTool) is a simple .NET toolkit inspired on [MVVMLight](https://mvvmlight.codeplex.com/), [Cimbalino Toollkit](https://github.com/Cimbalino/Cimbalino-Toolkit) and [Template10](https://github.com/Windows-XAML/Template10).
 
-## Install GeekyTool using [NuGet](https://www.nuget.org/packages/GeekyTool/) ![Latest stable version](https://img.shields.io/nuget/v/GeekyTool.svg?style=flat-square "Latest stable version")
+## Install GeekyTool using [NuGet](https://www.nuget.org/packages/GeekyTool/) ![Latest stable version](https://img.shields.io/nuget/v/GeekyTool.svg?style=flat-square "Latest stable version") [![Build status](https://ci.appveyor.com/api/projects/status/3pksp70dv4e9euis?svg=true)](https://ci.appveyor.com/project/carrillo/geekytool)
+
+
 
 ```
 Install-Package GeekyTool
