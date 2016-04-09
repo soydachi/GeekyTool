@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>GeekyTool.Core</id>
+    <version>$version$</version>
+    <authors>Dachi Gogotchuri</authors>
+    <title>Geeky Tool</title>
+    <description>A simple toolkit for .NET developers</description>
+    <language>en-US</language>
+    <projectUrl>https://github.com/dachibox/GeekyTool</projectUrl>
+    <licenseUrl>https://github.com/dachibox/GeekyTool/blob/master/LICENSE</licenseUrl>
+    <iconUrl>https://raw.githubusercontent.com/dachibox/GeekyTool/master/assets/GeekyTool.png</iconUrl>
+    <copyright>Copyright 2016 Dachi Gogotchuri</copyright>
+    <tags>GeekyTool, MVVM, Toolkit</tags>
+  </metadata>
+</package>
