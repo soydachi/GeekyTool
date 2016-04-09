@@ -1,0 +1,35 @@
+version: 1.0.{build}
+branches:
+  only:
+  - master
+configuration: Release
+platform: Any CPU
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+build:
+  project: .\src\GeekyTool.UWP\GeekyTool.UWP.csproj
+  publish_nuget: true
+  verbosity: detailed
+after_test:
+- ps: .\nuget\pack.ps1
+artifacts:
+- path: .\src\GeekyTool.UWP\bin\Release\GeekyTool.Core.dll
+  name: GeekyTool.Core.dll
+- path: .\src\GeekyTool.UWP\bin\Release\GeekyTool.Core.pdb
+  name: GeekyTool.Core.pdb
+- path: .\src\GeekyTool.UWP\bin\Release\GeekyTool.UWP.dll
+  name: GeekyTool.UWP.dll
+- path: .\src\GeekyTool.UWP\bin\Release\GeekyTool.UWP.pdb
+  name: GeekyTool.UWP.pdb
+- path: .\src\GeekyTool.UWP\bin\Release\GeekyTool.UWP.pri
+  name: GeekyTool.UWP.pri
+deploy:
+- provider: NuGet
+  api_key:
+    secure: O4rebyK9Kwp0ODOFhMqWbeFSAf20OBUsHR2zop2LmUJeqM6B3x/teCcihDdQ4+92
+  on:
+    branch: master
