@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Navigation;
-using GeekyTool.Core.Base;
-using GeekyTool.Core.Messaging;
-using GeekyTool.Core.Services;
+using GeekyTool.Base;
+using GeekyTool.Messaging;
+using GeekyTool.Services;
 using SimpleMVVM.Models;
 using SimpleMVVM.Views;
 
@@ -39,7 +39,7 @@ namespace SimpleMVVM.ViewModels
             return Task.CompletedTask;
         }
 
-        private async void DoSomeStuff(string text)
+        private async Task DoSomeStuff(string text)
         {
             var msg = new MessageDialog(text);
             await msg.ShowAsync();

@@ -4,7 +4,7 @@
     <id>GeekyTool.UI</id>
     <version>$version$</version>
     <authors>Dachi Gogotchuri</authors>
-    <title>Geeky Tool</title>
+    <title>GeekyTool.UI</title>
     <description>A simple toolkit for .NET developers</description>
     <language>en-US</language>
     <projectUrl>https://github.com/dachibox/GeekyTool</projectUrl>

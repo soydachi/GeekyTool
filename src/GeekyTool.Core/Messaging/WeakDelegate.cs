@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace GeekyTool.Core.Messaging
+namespace GeekyTool.Messaging
 {
     /// <summary>
     /// A class which delegates managed without holding a strong reference to the target object.

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using GeekyTool.Core.Annotations;
+using GeekyTool.Properties;
 
-namespace GeekyTool.Core.Base
+namespace GeekyTool.Base
 {
     public abstract class BindableBase : INotifyPropertyChanged
     {

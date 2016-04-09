@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using GeekyTool.Core.Services;
 
 // ReSharper disable once CheckNamespace
 namespace GeekyTool.Services

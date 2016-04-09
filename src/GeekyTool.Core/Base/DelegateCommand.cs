@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace GeekyTool.Core.Base
+namespace GeekyTool.Base
 {
     /// <summary>
     /// A command whose sole purpose is to relay its functionality to other

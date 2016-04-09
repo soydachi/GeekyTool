@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace GeekyTool.Core.Messaging
+namespace GeekyTool.Messaging
 {
     /// <summary>
     /// Provides an interface for classes that manage the callback methods 

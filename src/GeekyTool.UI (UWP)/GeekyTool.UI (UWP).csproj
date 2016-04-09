@@ -7,8 +7,8 @@
     <ProjectGuid>{4E8BC542-1629-48F3-8581-1A8A7037F078}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GeekyTool.UI</RootNamespace>
-    <AssemblyName>GeekyTool.UWP.UI</AssemblyName>
+    <RootNamespace>GeekyTool</RootNamespace>
+    <AssemblyName>GeekyTool.UI</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
@@ -117,9 +117,9 @@
       <Project>{113dbc6b-abdf-4f6e-b55b-d4f3efa38da7}</Project>
       <Name>GeekyTool.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GeekyTool.UWP\GeekyTool.UWP.csproj">
+    <ProjectReference Include="..\GeekyTool %28UWP%29\GeekyTool %28UWP%29.csproj">
       <Project>{406c87b7-74a4-444d-b8fa-9a9dbb10c957}</Project>
-      <Name>GeekyTool.UWP</Name>
+      <Name>GeekyTool %28UWP%29</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +127,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

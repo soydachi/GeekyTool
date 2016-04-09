@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace GeekyTool.Core.Messaging
+namespace GeekyTool.Messaging
 {
     /// <summary>
     /// Allows for easy communication between loosely coupled classes.

@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace GeekyTool.Core.Messaging
+namespace GeekyTool.Messaging
 {
     /// <summary>
     /// A class that manages the notifications between objects. 

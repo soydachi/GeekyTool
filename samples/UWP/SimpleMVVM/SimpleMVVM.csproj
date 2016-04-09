@@ -143,13 +143,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\GeekyTool %28UWP%29\GeekyTool %28UWP%29.csproj">
+      <Project>{406c87b7-74a4-444d-b8fa-9a9dbb10c957}</Project>
+      <Name>GeekyTool %28UWP%29</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\src\GeekyTool.Core\GeekyTool.Core.csproj">
       <Project>{113dbc6b-abdf-4f6e-b55b-d4f3efa38da7}</Project>
       <Name>GeekyTool.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\src\GeekyTool.UWP\GeekyTool.UWP.csproj">
-      <Project>{406c87b7-74a4-444d-b8fa-9a9dbb10c957}</Project>
-      <Name>GeekyTool.UWP</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

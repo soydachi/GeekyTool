@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
-using GeekyTool.Core.Base;
-using GeekyTool.Core.Services;
+using GeekyTool.Base;
+using GeekyTool.Services;
 using SimpleMVVM.Models;
 
 namespace SimpleMVVM.ViewModels

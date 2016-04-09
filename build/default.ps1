@@ -10,7 +10,7 @@ properties {
   
   $isAppVeyor = Test-Path -Path env:\APPVEYOR
   
-  $version = "1.0.18"
+  $version = "1.0.20"
   
   $tempDir = "$binDir\temp"
   $binariesDir = "$binDir\binaries"
@@ -23,13 +23,13 @@ properties {
   $vstest = "${Env:ProgramFiles(x86)}\Microsoft Visual Studio 11.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe"
   
   $configurations = @{
-    "Portable" = @{Suffix = " (Portable)"; Folder="portable-net45+wp8+win8+wpa81"};
+    "Portable" = @{Suffix = ""; Folder="portable-net45+wp8+win8+wpa81"};
     "UWP" = @{Suffix = " (UWP)"; Folder="uap10.0"}
   }
   
   $projects = @(
     @{Name = "GeekyTool"; Configurations = @("UWP")},
-    @{Name = "GeekyTool.Core"; Configurations = @("Portable", "UWP")},
+    @{Name = "GeekyTool.Core"; Configurations = @("Portable")},
     @{Name = "GeekyTool.UI"; Configurations = @("UWP")}
   )
 }
@@ -113,6 +113,8 @@ task Version -description "Updates the version entries in AssemblyInfo.cs files"
       $projectDir = "$sourceDir\$fullProjectName\"
       
       WriteColoredOutput -ForegroundColor Green "Versioning $fullProjectName...`n"
+      WriteColoredOutput -ForegroundColor Green "projectDir $projectDir...`n"
+      WriteColoredOutput -ForegroundColor Green "configurationSuffix $configurationSuffix...`n"
       
       Get-ChildItem -Path $projectDir -Filter AssemblyInfo.cs -Recurse | % {
         $fullFilename = $_.FullName

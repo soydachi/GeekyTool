@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using GeekyTool.Core.Helpers;
+using GeekyTool.Helpers;
 
-namespace GeekyTool.Core.Extensions
+namespace GeekyTool.Extensions
 {
     public static class IEnumerablesExtensions
     {
