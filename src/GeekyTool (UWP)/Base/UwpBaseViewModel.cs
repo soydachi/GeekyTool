@@ -2,8 +2,6 @@
 using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Navigation;
-using GeekyTool.Core.Base;
-using GeekyTool.Core.Services;
 using GeekyTool.Services;
 
 namespace GeekyTool.Base

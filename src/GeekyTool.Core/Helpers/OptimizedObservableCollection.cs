@@ -18,7 +18,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 
-namespace GeekyTool.Core.Helpers
+namespace GeekyTool.Helpers
 {
     /// <summary>
     /// Optimized version of the <see cref="ObservableCollection{T}"/> class.

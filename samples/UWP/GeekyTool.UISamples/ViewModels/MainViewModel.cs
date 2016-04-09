@@ -1,11 +1,9 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml.Navigation;
-using GeekyTool.Core.Base;
-using GeekyTool.Core.Services;
-using GeekyTool.Extensions;
+using GeekyTool.Base;
+using GeekyTool.Services;
 
 namespace GeekyTool.UISamples.ViewModels
 {

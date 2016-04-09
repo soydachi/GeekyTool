@@ -8,7 +8,7 @@
     <ProjectGuid>{113DBC6B-ABDF-4F6E-B55B-D4F3EFA38DA7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GeekyTool.Core</RootNamespace>
+    <RootNamespace>GeekyTool</RootNamespace>
     <AssemblyName>GeekyTool.Core</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>

@@ -1,7 +1,6 @@
 ﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using GeekyTool.Core.Base;
-using GeekyTool.Core.Services;
+using GeekyTool.Services;
 
 namespace GeekyTool.Base
 {

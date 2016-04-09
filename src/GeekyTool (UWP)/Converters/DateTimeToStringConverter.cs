@@ -26,7 +26,7 @@ namespace GeekyTool.Converters
             {
                 return DateTime.ParseExact(dateString, parameter.ToString(), null);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return DateTime.Now;
             }
