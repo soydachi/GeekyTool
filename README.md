@@ -2,13 +2,13 @@
 
 [**GeekyTool**](https://github.com/dachibox/GeekyTool) is a simple .NET toolkit inspired on [MVVMLight](https://mvvmlight.codeplex.com/), [Cimbalino Toollkit](https://github.com/Cimbalino/Cimbalino-Toolkit) and [Template10](https://github.com/Windows-XAML/Template10).
 
-## Install GeekyTool using [NuGet](https://www.nuget.org/packages/GeekyTool/) ![Latest stable version](https://img.shields.io/nuget/v/GeekyTool.svg?style=flat-square "Latest stable version") [![Build status](https://ci.appveyor.com/api/projects/status/3pksp70dv4e9euis?svg=true)](https://ci.appveyor.com/project/carrillo/geekytool)
+## Install GeekyTool using NuGet [![Build status](https://ci.appveyor.com/api/projects/status/3pksp70dv4e9euis?svg=true)](https://ci.appveyor.com/project/dachi/geekytool)
 
-
-
-```
-Install-Package GeekyTool
-```
+Package             | State | Description
+--------------------|-------|--------------------------------------
+[GeekyTool.Core][1] | ![Latest GeekyTool.Core stable version][4] | The portable class. Contains mvvm class, services, messenger, etc..
+[GeekyTool][2]      | ![Latest GeekyTool stable version][5] | An concrete implementation of GeekyTool.Core on each platform.
+[GeekyTool.UI][3]   | ![Latest GeekyTool.UI stable version][6] | Controls and UI based implementation for each platform.
 
 
 ## Documentation
@@ -25,7 +25,7 @@ GeekyTool is a **Portable Class Library** implemented on each specific platforms
 - **.NET** >= 4.5
 - **UWP**
 
-You can fin all the UWP code examples under `samples\UWP` ([@github](https://github.com/dachibox/GeekyTool/tree/dev/samples/UWP/SimpleMVVM)) folder.
+You can find all the UWP code examples under `samples\UWP` ([@github](https://github.com/dachibox/GeekyTool/tree/dev/samples/UWP)) folder.
 
 ## Author
 
@@ -57,3 +57,10 @@ You can fin all the UWP code examples under `samples\UWP` ([@github](https://git
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+[1]: https://www.nuget.org/packages/GeekyTool.Core
+[2]: https://www.nuget.org/packages/GeekyTool
+[3]: https://www.nuget.org/packages/GeekyTool.UI
+[4]: https://img.shields.io/nuget/v/GeekyTool.Core.svg?style=flat-square "Latest GeekyTool.Core stable version"
+[5]: https://img.shields.io/nuget/v/GeekyTool.svg?style=flat-square "Latest GeekyTool stable version"
+[6]: https://img.shields.io/nuget/v/GeekyTool.UI.svg?style=flat-square "Latest GeekyTool.UI stable version"
