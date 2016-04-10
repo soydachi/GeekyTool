@@ -10,7 +10,7 @@ properties {
   
   $isAppVeyor = Test-Path -Path env:\APPVEYOR
   
-  $version = "1.0.20"
+  $version = "1.0.60"
   
   $tempDir = "$binDir\temp"
   $binariesDir = "$binDir\binaries"
