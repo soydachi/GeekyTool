@@ -10,7 +10,7 @@ namespace GeekyTool.Base
     {
         protected CoreDispatcher MainDispatcher => Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher;
 
-        protected INavigationService NavigationService { get; set; }
+        public INavigationService NavigationService { get; set; }
 
         private ICommand goBackCommand;
         public ICommand GoBackCommand
