@@ -133,6 +133,7 @@
     <Compile Include="Extensions\EncodeExtensions.cs" />
     <Compile Include="Extensions\StorageFileExtensions.cs" />
     <Compile Include="Extensions\XamlExtensions.cs" />
+    <Compile Include="Helpers\FlyoutHelper.cs" />
     <Compile Include="Helpers\VisualTreeHelper.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
