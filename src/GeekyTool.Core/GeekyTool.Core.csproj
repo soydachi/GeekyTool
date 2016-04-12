@@ -54,6 +54,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Navigation\INavigable.cs" />
     <Compile Include="Services\Navigation\INavigationService.cs" />
+    <Compile Include="Services\StatusInformer\InformerState.cs" />
+    <Compile Include="Services\StatusInformer\IStatusInformable.cs" />
+    <Compile Include="Services\StatusInformer\IStatusInformer.cs" />
+    <Compile Include="Services\StatusInformer\SimpleStatusInformer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
