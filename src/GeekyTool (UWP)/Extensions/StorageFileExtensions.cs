@@ -25,9 +25,13 @@ namespace GeekyTool.Extensions
 
         public static async Task<BitmapImage> ToBitmapImageAsync(this StorageFile file)
         {
-            var src = new BitmapImage();
-            src.SetSource(await file.OpenReadAsync());
-            return src;
+            var bitmapImage = new BitmapImage();
+            using (var stream = (FileRandomAccessStream)await file.OpenAsync(FileAccessMode.Read))
+            {
+                bitmapImage.SetSource(stream);
+            }
+
+            return bitmapImage;
         }
 
         public static async Task<byte[]> ToResizedImageAsync(this StorageFile file, int maxWidth = 1600,
