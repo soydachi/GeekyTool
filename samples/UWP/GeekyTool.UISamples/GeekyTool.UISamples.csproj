@@ -129,17 +129,17 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\GeekyTool %28UWP%29\GeekyTool %28UWP%29.csproj">
+      <Project>{406c87b7-74a4-444d-b8fa-9a9dbb10c957}</Project>
+      <Name>GeekyTool %28UWP%29</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\src\GeekyTool.Core\GeekyTool.Core.csproj">
       <Project>{113dbc6b-abdf-4f6e-b55b-d4f3efa38da7}</Project>
       <Name>GeekyTool.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\src\GeekyTool.UWP.UI\GeekyTool.UWP.UI.csproj">
+    <ProjectReference Include="..\..\..\src\GeekyTool.UI %28UWP%29\GeekyTool.UI %28UWP%29.csproj">
       <Project>{4e8bc542-1629-48f3-8581-1a8a7037f078}</Project>
-      <Name>GeekyTool.UWP.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\src\GeekyTool.UWP\GeekyTool.UWP.csproj">
-      <Project>{406c87b7-74a4-444d-b8fa-9a9dbb10c957}</Project>
-      <Name>GeekyTool.UWP</Name>
+      <Name>GeekyTool.UI %28UWP%29</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

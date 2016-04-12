@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using GeekyTool.Core.Services;
 using GeekyTool.Services;
 using GeekyTool.UISamples.ViewModels;
 using GeekyTool.UISamples.Views;

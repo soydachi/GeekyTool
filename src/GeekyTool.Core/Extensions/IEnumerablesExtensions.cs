@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using GeekyTool.Core.Helpers;
+using GeekyTool.Helpers;
 
-namespace GeekyTool.Core.Extensions
+namespace GeekyTool.Extensions
 {
     public static class IEnumerablesExtensions
     {
@@ -51,6 +52,19 @@ namespace GeekyTool.Core.Extensions
                 return true;
             }
             return genericCollection.Count < 1;
+        }
+
+        public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source), "Source list cannot be null");
+            if (action == null)
+                throw new ArgumentNullException(nameof(action), "Action to be applied to source cannot be null");
+
+            foreach (T element in source)
+            {
+                action(element);
+            }
         }
     }
 }

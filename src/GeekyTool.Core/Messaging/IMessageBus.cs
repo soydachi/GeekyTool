@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
 
-namespace GeekyTool.Core.Messaging
+namespace GeekyTool.Messaging
 {
     /// <summary>
     /// Provides an interface for classes that manage the callback methods 
@@ -13,7 +14,21 @@ namespace GeekyTool.Core.Messaging
         /// </summary>
         /// <typeparam name="T">Type of messages that forwards this message loop.</typeparam>
         /// <param name="callback">Callback-Method.</param>
+        void AddCallback<T>(Func<T, Task> callback);
+
+        /// <summary>
+        /// Adds a callback method to add to the collection.
+        /// </summary>
+        /// <typeparam name="T">Type of messages that forwards this message loop.</typeparam>
+        /// <param name="callback">Callback-Method.</param>
         void AddCallback<T>(Action<T> callback);
+
+        /// <summary>
+        /// Removes a callback method from the collection.
+        /// </summary>
+        /// <typeparam name="T">Type of messages that forwards this message loop.</typeparam>
+        /// <param name="callback">Callback-Methode.</param>
+        void RemoveCallback<T>(Func<T, Task> callback);
 
         /// <summary>
         /// Removes a callback method from the collection.

@@ -1,6 +1,5 @@
 ﻿using Autofac;
-using GeekyTool.Core.Messaging;
-using GeekyTool.Core.Services;
+using GeekyTool.Messaging;
 using GeekyTool.Services;
 using SimpleMVVM.ViewModels;
 using SimpleMVVM.Views;

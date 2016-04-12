@@ -5,13 +5,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:base="using:GeekyTool.Base"
-    xmlns:ui="using:GeekyTool.UI"
+    xmlns:geekyTool="using:GeekyTool"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Button Content="Show Dialog" Command="{Binding ShowDialogCommand}"></Button>
-        <ui:Dialog Title="Title" IsOpen="{Binding IsOpen, Mode=TwoWay}" Background="Coral">
+        <geekyTool:Dialog Title="Title" IsOpen="{Binding IsOpen, Mode=TwoWay}" Background="Coral">
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -57,7 +57,7 @@
                     </ListView>
                 </Grid>
             </Grid>
-        </ui:Dialog>
+        </geekyTool:Dialog>
     </Grid>
 </base:PageBase>
 

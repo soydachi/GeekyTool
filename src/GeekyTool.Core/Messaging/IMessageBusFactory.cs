@@ -1,4 +1,4 @@
-﻿namespace GeekyTool.Core.Messaging
+﻿namespace GeekyTool.Messaging
 {
     /// <summary>
     /// Defines an interface for classes that create objects whose types <see
