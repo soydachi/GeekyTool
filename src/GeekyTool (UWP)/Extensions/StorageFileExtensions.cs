@@ -82,7 +82,7 @@ namespace GeekyTool.Extensions
             }
         }
 
-        public static async Task<StorageFile> ToLocalFileAsync(this StorageFile file, string fileName, string folder = "images")
+        public static async Task<StorageFile> ToLocalFileAsync(this StorageFile file, string fileName, string folder)
         {
             var imagesFolder =
                 await
