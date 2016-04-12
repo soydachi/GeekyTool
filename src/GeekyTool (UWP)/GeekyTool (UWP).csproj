@@ -131,6 +131,7 @@
     <Compile Include="Converters\VisibilityToBooleanConverter.cs" />
     <Compile Include="Extensions\ColorExtensions.cs" />
     <Compile Include="Extensions\EncodeExtensions.cs" />
+    <Compile Include="Extensions\StorageFileExtensions.cs" />
     <Compile Include="Extensions\XamlExtensions.cs" />
     <Compile Include="Helpers\VisualTreeHelper.cs" />
     <Compile Include="Properties\Annotations.cs" />
