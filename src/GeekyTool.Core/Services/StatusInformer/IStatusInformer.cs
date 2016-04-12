@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace GeekyTool.Core.Services
+// ReSharper disable once CheckNamespace
+namespace GeekyTool.Services
 {
     public interface IStatusInformer
     {

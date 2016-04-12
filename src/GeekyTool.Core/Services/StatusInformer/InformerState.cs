@@ -1,4 +1,5 @@
-﻿namespace GeekyTool.Core.Services
+﻿// ReSharper disable once CheckNamespace
+namespace GeekyTool.Services
 {
     public enum InformerState
     {

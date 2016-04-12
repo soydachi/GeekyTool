@@ -4,7 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-namespace GeekyTool.Core.Services
+// ReSharper disable once CheckNamespace
+namespace GeekyTool.Services
 {
     public class SimpleStatusInformer : INotifyPropertyChanged, IStatusInformer
     {
