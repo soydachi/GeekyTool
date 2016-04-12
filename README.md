@@ -44,7 +44,7 @@ You can find all the UWP code examples under `samples\UWP` ([@github](https://gi
 [Apache License](https://github.com/dachibox/GeekyTool/master/LICENSE)
 
 
-    Copyright 2015 Dachi Gogotchuri
+    Copyright 2016 Dachi Gogotchuri
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
