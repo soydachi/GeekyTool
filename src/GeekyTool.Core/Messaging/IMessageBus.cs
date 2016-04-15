@@ -19,6 +19,12 @@ namespace GeekyTool.Messaging
         /// <summary>
         /// Adds a callback method to add to the collection.
         /// </summary>
+        /// <param name="callback">Callback-Method.</param>
+        void AddCallback(Func<Task> callback);
+
+        /// <summary>
+        /// Adds a callback method to add to the collection.
+        /// </summary>
         /// <typeparam name="T">Type of messages that forwards this message loop.</typeparam>
         /// <param name="callback">Callback-Method.</param>
         void AddCallback<T>(Action<T> callback);
@@ -35,6 +41,15 @@ namespace GeekyTool.Messaging
         /// <typeparam name="T">Type of messages that forwards this message loop.</typeparam>
         /// <param name="callback">Callback-Methode.</param>
         void RemoveCallback<T>(Func<T, Task> callback);
+
+        /// <summary>
+        /// Removes a callback method from the collection.
+        /// </summary>
+        /// <param name="callback">Callback-Method.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Dispatched when <paramref name="callback" /> is equal <c>null</c>.
+        /// </exception>
+        void RemoveCallback(Func<Task> callback);
 
         /// <summary>
         /// Removes a callback method from the collection.

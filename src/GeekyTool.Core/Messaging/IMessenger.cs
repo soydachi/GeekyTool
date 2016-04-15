@@ -31,6 +31,17 @@ namespace GeekyTool.Messaging
         void Register<T>(Func<T, Task> callback, object token);
 
         /// <summary>
+        /// Registers a callback method for a particular message type 
+        /// with a specific token.
+        /// </summary>
+        /// <param name="callback">Callback-Method, who work with he message.</param>
+        /// <param name="token">Token.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Occurs when one of the parameters is <c>null</c>.
+        /// </exception>
+        void Register(Func<Task> callback, object token);
+
+        /// <summary>
         /// Register a Callback-Method for certain message and a certain Token.
         /// </summary>
         /// <typeparam name="T">Type of Message.</typeparam>
@@ -44,6 +55,12 @@ namespace GeekyTool.Messaging
         /// <typeparam name="T">Type of Message.</typeparam>
         /// <param name="callback">Callback-Method, who work with he message.</param>
         void Register<T>(Func<T, Task> callback);
+
+        /// <summary>
+        /// Register a Callback-Method for the default Token with a certain message.
+        /// </summary>
+        /// <param name="callback">Callback-Method, who work with he message.</param>
+        void Register(Func<Task> callback);
 
         /// <summary>
         /// Register a Callback-Method for the default Token with a certain message.
@@ -83,6 +100,15 @@ namespace GeekyTool.Messaging
         /// Removes a callback method for a particular message type 
         /// that was registered with a specific token
         /// </summary>
+        /// <param name="callback">Callback-Method.</param>
+        /// <param name="token">Token.</param>
+        /// <exception cref="ArgumentNullException"><paramref name=""/> is <see langword="null" />.</exception>
+        void Unregister(Func<Task> callback, object token);
+
+        /// <summary>
+        /// Removes a callback method for a particular message type 
+        /// that was registered with a specific token
+        /// </summary>
         /// <typeparam name="T">Type of message.</typeparam>
         /// <param name="callback">Callback-Method.</param>
         /// <param name="token">Token.</param>
@@ -104,5 +130,12 @@ namespace GeekyTool.Messaging
         /// <typeparam name="T">Type of Message.</typeparam>
         /// <param name="callback">Callback-Method.</param>
         void Unregister<T>(Func<T, Task> callback);
+
+        /// <summary>
+        /// Removes a callback method for a particular message type, 
+        /// the (implicit) was registered with the default token.
+        /// </summary>
+        /// <param name="callback">Callback-Method.</param>
+        void Unregister(Func<Task> callback);
     }
 }
