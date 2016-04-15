@@ -209,7 +209,7 @@ namespace GeekyTool.Messaging
 
                 if (method.ReturnType == typeof (Task))
                 {
-                    var callback = (Func<T, Task>)item.CreateDelegate<Action<T, Task>>();
+                    var callback = (Func<T, Task>)item.CreateDelegate<Func<T, Task>>();
                     callback(message);
                 }
                 else if (item.IsExecutable)
