@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace GeekyTool.Core.Base
+namespace GeekyTool.Base
 {
     /// <summary>
     /// A command whose sole purpose is to relay its functionality to other
@@ -74,6 +74,14 @@ namespace GeekyTool.Core.Base
     {
         private Action<T> execute;
         private Func<T, bool> canExecute;
+
+        /// <summary>
+        ///     Constructor not using canExecute.
+        /// </summary>
+        /// <param name="execute"></param>
+        public DelegateCommand(Action<T> execute) : this(execute, null)
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DelegateCommand{T}"/> class.

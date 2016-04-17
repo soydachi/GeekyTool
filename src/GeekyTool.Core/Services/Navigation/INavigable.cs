@@ -1,10 +1,11 @@
 using System.Threading.Tasks;
 
-namespace GeekyTool.Core.Services
+// ReSharper disable once CheckNamespace
+namespace GeekyTool.Services
 {
-    public interface INavigable
+    public interface INavigable<in TNavigationEventArgs>
     {
-        Task OnNavigatedFrom(object e);
-        Task OnNavigatedTo(object e);
+        Task OnNavigatedFrom(TNavigationEventArgs e);
+        Task OnNavigatedTo(TNavigationEventArgs e);
     }
 }

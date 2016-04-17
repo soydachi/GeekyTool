@@ -15,7 +15,7 @@
 
 
 // ReSharper disable once CheckNamespace
-namespace GeekyTool.Core.Services
+namespace GeekyTool.Services
 {
     /// <summary>
     ///     NavigationService contract definition.

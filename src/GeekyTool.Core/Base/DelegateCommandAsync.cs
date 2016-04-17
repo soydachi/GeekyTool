@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace GeekyTool.Core.Base
+namespace GeekyTool.Base
 {
 	/// <summary>
 	/// This class allows us to delegate command execution to viewmodels.
