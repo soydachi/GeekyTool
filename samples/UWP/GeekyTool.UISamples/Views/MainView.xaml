@@ -10,7 +10,10 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button Content="Show Dialog" Command="{Binding ShowDialogCommand}"></Button>
+        <StackPanel HorizontalAlignment="Center" Margin="0,20">
+            <Button Content="Show Dialog" Command="{Binding ShowDialogCommand}"></Button>
+            <geekyTool:AdaptiveImage ImageStrech="UniformToFill" Source="{Binding AdaptiveImageSource}" Width="512" Height="512"></geekyTool:AdaptiveImage>
+        </StackPanel>
         <geekyTool:Dialog Title="Title" IsOpen="{Binding IsOpen, Mode=TwoWay}" Background="Coral">
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
