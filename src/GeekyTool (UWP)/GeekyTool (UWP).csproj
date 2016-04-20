@@ -137,6 +137,8 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Navigation\NavigationService.cs" />
+    <Compile Include="Services\PasswordManager\IPasswordManager.cs" />
+    <Compile Include="Services\PasswordManager\PasswordManager.cs" />
     <EmbeddedResource Include="Properties\GeekyTool.UWP.rd.xml" />
   </ItemGroup>
   <ItemGroup>
