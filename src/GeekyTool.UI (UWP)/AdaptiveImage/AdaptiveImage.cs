@@ -40,7 +40,9 @@ namespace GeekyTool
             };
         }
 
-
+        /// <summary>
+        /// You need to bind an <see cref="AdaptiveImageSource"/> property. Not use this control for local images, only for http images.
+        /// </summary>
         public AdaptiveImageSource Source
         {
             get { return (AdaptiveImageSource)GetValue(SourceProperty); }
@@ -84,9 +86,10 @@ namespace GeekyTool
 
             if (source?.LowResSource == null) return;
 
-            var lowResSource = new BitmapImage { UriSource = new Uri(source.LowResSource) };
+            var lowResSource = new BitmapImage {UriSource = new Uri(source.LowResSource)};
             LowResImage = CreateImage();
             LowResImage.DataContext = lowResSource;
+
 
             LayoutRoot.Children.Add(LowResImage);
 

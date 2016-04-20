@@ -137,6 +137,8 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Navigation\NavigationService.cs" />
+    <Compile Include="Services\PasswordManager\IPasswordManager.cs" />
+    <Compile Include="Services\PasswordManager\PasswordManager.cs" />
     <EmbeddedResource Include="Properties\GeekyTool.UWP.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -144,11 +146,6 @@
       <Project>{113dbc6b-abdf-4f6e-b55b-d4f3efa38da7}</Project>
       <Name>GeekyTool.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System.Collections">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\WindowsPhoneApp\v8.1\System.Collections.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -51,9 +51,8 @@
                 </RelativePanel>
 
             </PivotItem>
-        </Pivot>
-        
-        <geekyTool:Dialog Title="Title" IsOpen="{Binding IsOpen, Mode=TwoWay}" Background="Coral">
+            </Pivot>
+            <geekyTool:Dialog Title="Title" IsOpen="{Binding IsOpen, Mode=TwoWay}" Background="Coral">
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
