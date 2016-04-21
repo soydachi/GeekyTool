@@ -13,6 +13,8 @@ namespace GeekyTool.Behaviors
     {
         private Visual elementVisual;
 
+        private Compositor compositor;
+
         private UIElement uiElement;
 
         protected override void OnAttached()
@@ -24,6 +26,8 @@ namespace GeekyTool.Behaviors
                 throw new InvalidOperationException("TiltBehavior can only be attached to types inherit from UIElement.");
 
             elementVisual = ElementCompositionPreview.GetElementVisual(uiElement);
+
+            compositor = elementVisual.Compositor;
 
             uiElement.PointerPressed += UiElementOnPointerPressed;
             uiElement.PointerMoved += UiElementOnPointerMoved;
@@ -42,6 +46,7 @@ namespace GeekyTool.Behaviors
                 
                 elementVisual.Dispose();
                 elementVisual = null;
+                compositor = null;
             }
 
             uiElement.PointerPressed -= UiElementOnPointerPressed;
@@ -55,7 +60,7 @@ namespace GeekyTool.Behaviors
 
         private void UiElementOnPointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            ApplyTiltEffect(e);
+            ApplyTiltEffect(e, withAnimation: true);
         }
 
         private void UiElementOnPointerMoved(object sender, PointerRoutedEventArgs e)
@@ -72,12 +77,12 @@ namespace GeekyTool.Behaviors
 
         private void UiElementOnPointerCanceled(object sender, PointerRoutedEventArgs e)
         {
-            ResetTiltEffect();
+            ResetTiltEffect(withAnimation: true);
         }
 
         private void UiElementOnPointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            ResetTiltEffect();
+            ResetTiltEffect(withAnimation: true);
         }
 
         private void UiElementOnPointerExited(object sender, PointerRoutedEventArgs e)
@@ -85,7 +90,7 @@ namespace GeekyTool.Behaviors
             ResetTiltEffect();
         }
 
-        private void ApplyTiltEffect(PointerRoutedEventArgs e)
+        private void ApplyTiltEffect(PointerRoutedEventArgs e, bool withAnimation = false)
         {
             elementVisual.CenterPoint = 
                 new Vector3((float)uiElement.RenderSize.Width * 0.5f, (float)uiElement.RenderSize.Height * 0.5f, -10.0f);
@@ -96,13 +101,37 @@ namespace GeekyTool.Behaviors
                 new Vector3((float)contactPoint.X, (float)contactPoint.Y, 0.0f) - elementVisual.CenterPoint;
             contactVector = Vector3.Normalize(contactVector);
 
+            // Apply transform matrix to contact vector
             elementVisual.RotationAxis = new Vector3(-contactVector.Y, contactVector.X, 0.0f);
-            elementVisual.RotationAngleInDegrees = 20.0f;
+
+            if (withAnimation)
+            {
+                var animation = compositor.CreateScalarKeyFrameAnimation();
+                animation.InsertKeyFrame(0.00f, 0.0f);
+                animation.InsertKeyFrame(1.00f, 20.0f);
+                animation.Duration = TimeSpan.FromMilliseconds(200);
+                elementVisual.StartAnimation(nameof(elementVisual.RotationAngleInDegrees), animation);
+            }
+            else
+            {
+                elementVisual.RotationAngleInDegrees = 20.0f;
+            }
         }
 
-        private void ResetTiltEffect()
+        private void ResetTiltEffect(bool withAnimation = false)
         {
-            elementVisual.RotationAngleInDegrees = 0.0f;
+            if (withAnimation)
+            {
+                var animation = compositor.CreateScalarKeyFrameAnimation();
+                animation.InsertKeyFrame(0.00f, 20.0f);
+                animation.InsertKeyFrame(1.00f, 0.00f);
+                animation.Duration = TimeSpan.FromMilliseconds(200);
+                elementVisual.StartAnimation(nameof(elementVisual.RotationAngleInDegrees), animation);
+            }
+            else
+            {
+                elementVisual.RotationAngleInDegrees = 0.0f;
+            }
         }
     }
 }
