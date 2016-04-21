@@ -110,6 +110,7 @@
     <Compile Include="AdaptiveImage\AdaptiveImage.cs" />
     <Compile Include="AdaptiveImage\AdaptiveImageSource.cs" />
     <Compile Include="Behaviors\EnumStateBehavior.cs" />
+    <Compile Include="Behaviors\TiltBehavior.cs" />
     <Compile Include="Dialog.cs" />
     <Compile Include="Helpers\FlyoutHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

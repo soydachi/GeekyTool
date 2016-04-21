@@ -7,14 +7,52 @@
     xmlns:base="using:GeekyTool.Base"
     xmlns:geekyTool="using:GeekyTool"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:GeekyTool.Behaviors"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel HorizontalAlignment="Center" Margin="0,20">
-            <Button Content="Show Dialog" Command="{Binding ShowDialogCommand}"></Button>
-            <geekyTool:AdaptiveImage ImageStrech="UniformToFill" Source="{Binding AdaptiveImageSource}" Width="512" Height="512"></geekyTool:AdaptiveImage>
-        </StackPanel>
-        <geekyTool:Dialog Title="Title" IsOpen="{Binding IsOpen, Mode=TwoWay}" Background="Coral">
+        <Pivot>
+            <PivotItem Header="Dialog">
+                <Button Content="Show Dialog" Command="{Binding ShowDialogCommand}"></Button>
+            </PivotItem>
+            <PivotItem Header="Tilt">
+                <RelativePanel>
+                    <Border x:Name="GeekyTile" BorderThickness="1" Width="310" Height="310" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
+                        <Image x:Name="image" Source="ms-appx:///Assets/GeekyTool.png"/>
+                        <i:Interaction.Behaviors>
+                            <behaviors:TiltBehavior/>
+                        </i:Interaction.Behaviors>
+                    </Border>
+                    <Border x:Name="RedTile" BorderThickness="1" Width="150" Height="150" RelativePanel.AlignTopWith="GeekyTile" RelativePanel.LeftOf="GeekyTile" Margin="0,0,8,0" Background="Red">
+                        <i:Interaction.Behaviors>
+                            <behaviors:TiltBehavior/>
+                        </i:Interaction.Behaviors>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE13A;" Foreground="White" FontSize="48" />
+                    </Border>
+                    <Border x:Name="YellowTile" BorderThickness="1" Width="71" Height="71" RelativePanel.LeftOf="GeekyTile" RelativePanel.Below="RedTile" Margin="0,8,8,0" Background="#FFFFE500">
+                        <i:Interaction.Behaviors>
+                            <behaviors:TiltBehavior/>
+                        </i:Interaction.Behaviors>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE13D;" Foreground="White" FontSize="26.667" />
+                    </Border>
+                    <Border x:Name="CyanTile" BorderThickness="1" Width="310" Height="150" Background="#FF00C3FF" RelativePanel.RightOf="GeekyTile" RelativePanel.AlignBottomWith="GeekyTile" Margin="8,0,0,0">
+                        <i:Interaction.Behaviors>
+                            <behaviors:TiltBehavior/>
+                        </i:Interaction.Behaviors>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7E3;" Foreground="White" FontSize="48" />
+                    </Border>
+                    <Border x:Name="GreenTile" BorderThickness="1" Width="71" Height="71" RelativePanel.RightOf="GeekyTile" RelativePanel.Below="" RelativePanel.LeftOf="" Margin="8,0,0,8" RelativePanel.Above="CyanTile" Background="#FF30D11F">
+                        <i:Interaction.Behaviors>
+                            <behaviors:TiltBehavior/>
+                        </i:Interaction.Behaviors>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE006;" Foreground="White" FontSize="26.667" />
+                    </Border>
+                </RelativePanel>
+
+            </PivotItem>
+            </Pivot>
+            <geekyTool:Dialog Title="Title" IsOpen="{Binding IsOpen, Mode=TwoWay}" Background="Coral">
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
