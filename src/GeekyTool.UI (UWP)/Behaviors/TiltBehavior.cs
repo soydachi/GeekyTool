@@ -17,6 +17,9 @@ namespace GeekyTool.Behaviors
 
         private UIElement uiElement;
 
+        private ScalarKeyFrameAnimation touchInAnimation;
+        private ScalarKeyFrameAnimation touchOutAnimation;
+
         protected override void OnAttached()
         {
             base.OnAttached();
@@ -28,6 +31,16 @@ namespace GeekyTool.Behaviors
             elementVisual = ElementCompositionPreview.GetElementVisual(uiElement);
 
             compositor = elementVisual.Compositor;
+
+            touchInAnimation = compositor.CreateScalarKeyFrameAnimation();
+            touchInAnimation.InsertKeyFrame(0.00f, 0.0f);
+            touchInAnimation.InsertKeyFrame(1.00f, 20.0f);
+            touchInAnimation.Duration = TimeSpan.FromMilliseconds(200);
+
+            touchOutAnimation = compositor.CreateScalarKeyFrameAnimation();
+            touchOutAnimation.InsertKeyFrame(0.00f, 20.0f);
+            touchOutAnimation.InsertKeyFrame(1.00f, 0.00f);
+            touchOutAnimation.Duration = TimeSpan.FromMilliseconds(200);
 
             uiElement.PointerPressed += UiElementOnPointerPressed;
             uiElement.PointerMoved += UiElementOnPointerMoved;
@@ -106,11 +119,7 @@ namespace GeekyTool.Behaviors
 
             if (withAnimation)
             {
-                var animation = compositor.CreateScalarKeyFrameAnimation();
-                animation.InsertKeyFrame(0.00f, 0.0f);
-                animation.InsertKeyFrame(1.00f, 20.0f);
-                animation.Duration = TimeSpan.FromMilliseconds(200);
-                elementVisual.StartAnimation(nameof(elementVisual.RotationAngleInDegrees), animation);
+                elementVisual.StartAnimation(nameof(elementVisual.RotationAngleInDegrees), touchInAnimation);
             }
             else
             {
@@ -122,11 +131,7 @@ namespace GeekyTool.Behaviors
         {
             if (withAnimation)
             {
-                var animation = compositor.CreateScalarKeyFrameAnimation();
-                animation.InsertKeyFrame(0.00f, 20.0f);
-                animation.InsertKeyFrame(1.00f, 0.00f);
-                animation.Duration = TimeSpan.FromMilliseconds(200);
-                elementVisual.StartAnimation(nameof(elementVisual.RotationAngleInDegrees), animation);
+                elementVisual.StartAnimation(nameof(elementVisual.RotationAngleInDegrees), touchOutAnimation);
             }
             else
             {
