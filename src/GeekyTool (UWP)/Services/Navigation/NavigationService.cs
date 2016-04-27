@@ -4,6 +4,7 @@ using System.Linq;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 // ReSharper disable once CheckNamespace
 namespace GeekyTool.Services
@@ -148,6 +149,13 @@ namespace GeekyTool.Services
 
             if (appViewBackButtonVisibility)
                 UpdateAppViewBackButtonVisibility(frame);
+        }
+
+        public IList<PageStackEntry> GetBackStack()
+        {
+            var frame = navigationFrame ?? (Frame)Window.Current.Content;
+
+            return frame.BackStack;
         }
 
         private void UpdateAppViewBackButtonVisibility(Frame frame)
