@@ -18,7 +18,7 @@ namespace GeekyTool.Services
         /// <exception cref="ArgumentNullException">Dispatched when <paramref name="resource"/>, <paramref name="userName"/> or
         /// <paramref name="password"/> is <c>Null</c>
         /// </exception>
-        void Add([NotNull] string resource, [NotNull] string userName, [NotNull] string password);
+        bool Add([NotNull] string resource, [NotNull] string userName, [NotNull] string password);
         /// <summary>
         /// Adds a credential to the Credential Locker.
         /// </summary>
@@ -27,7 +27,7 @@ namespace GeekyTool.Services
         /// <exception cref="ArgumentNullException">Dispatched when <paramref name="resource"/> or
         /// <paramref name="password"/> is <c>Null</c>
         /// </exception>
-        void Add([NotNull] string resource, [NotNull] string password);
+        bool Add([NotNull] string resource, [NotNull] string password);
         /// <summary>
         /// Searches the Credential Locker for credentials matching the resource specified.
         /// </summary>
@@ -64,7 +64,7 @@ namespace GeekyTool.Services
         /// <exception cref="ArgumentNullException">Dispatched when <paramref name="resource"/>, <paramref name="userName"/> or
         /// <paramref name="password"/> is <c>Null</c>
         /// </exception>
-        void Remove([NotNull] string resource, [NotNull] string userName, [NotNull] string password);
+        bool Remove([NotNull] string resource, [NotNull] string userName, [NotNull] string password);
         /// <summary>
         /// Removes a credential from the Credential Locker.
         /// </summary>
@@ -73,10 +73,10 @@ namespace GeekyTool.Services
         /// <exception cref="ArgumentNullException">Dispatched when <paramref name="resource"/> or
         /// <paramref name="password"/> is <c>Null</c>
         /// </exception>
-        void Remove([NotNull] string resource, [NotNull] string password);
+        bool Remove([NotNull] string resource, [NotNull] string password);
         /// <summary>
         /// Removes all credentials from the Credential Locker.
         /// </summary>
-        void RemoveAll();
+        bool RemoveAll();
     }
 }

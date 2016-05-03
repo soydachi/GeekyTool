@@ -23,7 +23,7 @@ namespace GeekyTool.Services.PasswordManager
         /// <exception cref="ArgumentNullException">Dispatched when <paramref name="resource"/>, <paramref name="userName"/> or
         /// <paramref name="password"/> is <c>Null</c>
         /// </exception>
-        public void Add(string resource, string userName, string password)
+        public bool Add(string resource, string userName, string password)
         {
             if (string.IsNullOrEmpty(resource))
                 throw new ArgumentNullException(nameof(resource), "The argument is null");
@@ -32,7 +32,15 @@ namespace GeekyTool.Services.PasswordManager
             if (string.IsNullOrEmpty(password))
                 throw new ArgumentNullException(nameof(password), "The argument is null");
 
-            vault.Add(new PasswordCredential(resource, userName, password));
+            try
+            {
+                vault.Add(new PasswordCredential(resource, userName, password));
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -43,14 +51,22 @@ namespace GeekyTool.Services.PasswordManager
         /// <exception cref="ArgumentNullException">Dispatched when <paramref name="resource"/> or
         /// <paramref name="password"/> is <c>Null</c>
         /// </exception>
-        public void Add(string resource, string password)
+        public bool Add(string resource, string password)
         {
             if (string.IsNullOrEmpty(resource))
                 throw new ArgumentNullException(nameof(resource), "The argument is null");
             if (string.IsNullOrEmpty(password))
                 throw new ArgumentNullException(nameof(password), "The argument is null");
 
-            vault.Add(new PasswordCredential(resource, resource, password));
+            try
+            {
+                vault.Add(new PasswordCredential(resource, resource, password));
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -64,7 +80,14 @@ namespace GeekyTool.Services.PasswordManager
             if (string.IsNullOrEmpty(resource))
                 throw new ArgumentNullException(nameof(resource), "The argument is null");
 
-            return vault.FindAllByResource(resource);
+            try
+            {
+                return vault.FindAllByResource(resource);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /// <summary>Searches the Credential Locker for credentials that match the user name specified.</summary>
@@ -76,7 +99,14 @@ namespace GeekyTool.Services.PasswordManager
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentNullException(nameof(userName), "The argument is null");
 
-            return vault.FindAllByUserName(userName);
+            try
+            {
+                return vault.FindAllByUserName(userName);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /// <summary>Reads a credential from the Credential Locker.</summary>
@@ -92,7 +122,14 @@ namespace GeekyTool.Services.PasswordManager
             if (string.IsNullOrEmpty(userName))
                 throw new ArgumentNullException(nameof(userName), "The argument is null");
 
-            return vault.Retrieve(resource, userName);
+            try
+            {
+                return vault.Retrieve(resource, userName);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /// <summary>Reads a credential from the Credential Locker.</summary>
@@ -104,14 +141,29 @@ namespace GeekyTool.Services.PasswordManager
             if (string.IsNullOrEmpty(resource))
                 throw new ArgumentNullException(nameof(resource), "The argument is null");
 
-            return vault.Retrieve(resource, resource);
+            try
+            {
+                return vault.Retrieve(resource, resource);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         /// <summary>Retrieves all of the credentials stored in the Credential Locker.</summary>
         /// <returns>When this method returns, contains an IVectorView output of credential objects that match the search criteria. This output is a snapshot and not dynamic. If the results are used for updating or deleting credentials, those changes won't be reflected in the previous output.</returns>
         public IReadOnlyList<PasswordCredential> RetrieveAll()
         {
-            return vault.RetrieveAll();
+            try
+            {
+                return vault.RetrieveAll();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            
         }
 
         /// <summary>
@@ -123,7 +175,7 @@ namespace GeekyTool.Services.PasswordManager
         /// <exception cref="ArgumentNullException">Dispatched when <paramref name="resource"/>, <paramref name="userName"/> or
         /// <paramref name="password"/> is <c>Null</c>
         /// </exception>
-        public void Remove(string resource, string userName, string password)
+        public bool Remove(string resource, string userName, string password)
         {
             if (string.IsNullOrEmpty(resource))
                 throw new ArgumentNullException(nameof(resource), "The argument is null");
@@ -132,7 +184,15 @@ namespace GeekyTool.Services.PasswordManager
             if (string.IsNullOrEmpty(password))
                 throw new ArgumentNullException(nameof(password), "The argument is null");
 
-            vault.Remove(new PasswordCredential(resource, userName, password));
+            try
+            {
+                vault.Remove(new PasswordCredential(resource, userName, password));
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -143,24 +203,40 @@ namespace GeekyTool.Services.PasswordManager
         /// <exception cref="ArgumentNullException">Dispatched when <paramref name="resource"/> or
         /// <paramref name="password"/> is <c>Null</c>
         /// </exception>
-        public void Remove(string resource, string password)
+        public bool Remove(string resource, string password)
         {
             if (string.IsNullOrEmpty(resource))
                 throw new ArgumentNullException(nameof(resource), "The argument is null");
             if (string.IsNullOrEmpty(password))
                 throw new ArgumentNullException(nameof(password), "The argument is null");
 
-            vault.Remove(new PasswordCredential(resource, resource, password));
+            try
+            {
+                vault.Remove(new PasswordCredential(resource, resource, password));
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         /// <summary>
         /// Removes all credentials from the Credential Locker.
         /// </summary>
-        public void RemoveAll()
+        public bool RemoveAll()
         {
-            foreach (var passwordCredential in vault.RetrieveAll())
+            try
             {
-                vault.Remove(passwordCredential);
+                foreach (var passwordCredential in vault.RetrieveAll())
+                {
+                    vault.Remove(passwordCredential);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
     }
