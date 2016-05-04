@@ -66,6 +66,25 @@
                 </RelativePanel>
 
             </PivotItem>
+            <PivotItem Header="Loading">
+                <Grid>
+                    <ToggleButton Content="ToggleIsLoading" Margin="-8,0,0,0" IsChecked="{Binding IsBusy, Mode=TwoWay}"></ToggleButton>
+                    <geekyTool:Loading IsLoading="{Binding IsBusy}" LoadingHorizontalAlignment="Left" LoadingVerticalAlignment="Bottom"
+                                       LoadingBackground="White" LoadingOpacity="0.5">
+                        <geekyTool:Loading.LoadingContent>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Padding="12">
+                                    <Grid Margin="0,0,8,0">
+                                        <Image Source="../Assets/GeekyTool.png" Height="50"/>
+                                        <ProgressRing IsActive="True"/>
+                                    </Grid>
+                                    <TextBlock Text="You can go to drink a coffee, we are working on it :)" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </geekyTool:Loading.LoadingContent>
+                    </geekyTool:Loading>
+                </Grid>
+            </PivotItem>
         </Pivot>
         <geekyTool:Dialog Title="Title" IsOpen="{Binding IsOpen, Mode=TwoWay}" Background="#212121">
             <Grid HorizontalAlignment="Stretch">
@@ -120,4 +139,10 @@
         </geekyTool:Dialog>
     </Grid>
 </base:PageBase>
+
+
+
+
+
+
 

@@ -4,7 +4,7 @@
     xmlns:converters="using:GeekyTool.Converters"
     xmlns:geekyTool="using:GeekyTool">
 
-    <converters:ColorContrastConverter x:Key="ColorContrast"/>
+    <converters:ColorContrastConverter x:Key="ColorContrast" />
     <x:String x:Key="SettingsFlyoutBackButtonGlyph">&#xE0BA;</x:String>
 
     <Style TargetType="geekyTool:Dialog">
@@ -129,32 +129,33 @@
                                         </Style>
                                     </Grid.Resources>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Border Grid.Column="1" VerticalAlignment="Center">
                                         <Grid Margin="13,19,13,25" HorizontalAlignment="Center"
-                                                    Width="{TemplateBinding Width}">
+                                              Width="{TemplateBinding Width}">
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="*"/>
-                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
                                             <TextBlock
                                                 Foreground="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Background, Converter={StaticResource ColorContrast}}"
-                                                x:Name="PART_Title" Text="{TemplateBinding Title}" VerticalAlignment="Center"
+                                                x:Name="PART_Title" Text="{TemplateBinding Title}"
+                                                VerticalAlignment="Center"
                                                 FontFamily="Segoe UI" FontSize="26.6667" FontWeight="Light"
-                                                Margin="0,0,0,0"/>
+                                                Margin="0,0,0,0" />
                                             <ScrollViewer Grid.Row="1" MaxHeight="500">
                                                 <ContentPresenter Margin="0" x:Name="PART_Content"
                                                                   Foreground="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Background, Converter={StaticResource ColorContrast}}" />
                                             </ScrollViewer>
                                             <StackPanel Grid.Row="2" Orientation="Horizontal"
                                                         HorizontalAlignment="Right">
-                                                <Button x:Name="PART_NegativeCommand" Content="Cancelar"/>
-                                                <Button x:Name="PART_NeutralCommand" Content="Neutral"/>
-                                                <Button x:Name="PART_PositiveCommand" Content="Aceptar"/>
+                                                <Button x:Name="PART_NegativeCommand" Content="Cancelar" />
+                                                <Button x:Name="PART_NeutralCommand" Content="Neutral" />
+                                                <Button x:Name="PART_PositiveCommand" Content="Aceptar" />
                                             </StackPanel>
                                         </Grid>
                                     </Border>
@@ -173,3 +174,4 @@
         </Setter>
     </Style>
 </ResourceDictionary>
+
