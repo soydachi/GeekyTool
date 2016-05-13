@@ -7,7 +7,7 @@
     <ProjectGuid>{4E8BC542-1629-48F3-8581-1A8A7037F078}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GeekyTool</RootNamespace>
+    <RootNamespace>GeekyTool.UI</RootNamespace>
     <AssemblyName>GeekyTool.UI</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>

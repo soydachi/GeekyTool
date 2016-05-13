@@ -8,7 +8,8 @@
     xmlns:geekyTool="using:GeekyTool"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:behaviors="using:GeekyTool.Behaviors"
+    xmlns:ui="using:GeekyTool.UI"
+    xmlns:uiBehaviors="using:GeekyTool.UI.Behaviors"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -17,9 +18,9 @@
                 <Button Content="Show Dialog" Command="{Binding ShowDialogCommand}"></Button>
             </PivotItem>
             <PivotItem Header="AdaptiveImage">
-                <geekyTool:AdaptiveImage ImageStrech="UniformToFill" Source="{Binding AdaptiveImageSource}" Width="512"
+                <ui:AdaptiveImage ImageStrech="UniformToFill" Source="{Binding AdaptiveImageSource}" Width="512"
                                          Height="512">
-                </geekyTool:AdaptiveImage>
+                </ui:AdaptiveImage>
             </PivotItem>
             <PivotItem Header="Tilt">
                 <RelativePanel>
@@ -28,14 +29,14 @@
                             RelativePanel.AlignVerticalCenterWithPanel="True">
                         <Image x:Name="image" Source="ms-appx:///Assets/GeekyTool.png" />
                         <i:Interaction.Behaviors>
-                            <behaviors:TiltBehavior />
+                            <uiBehaviors:TiltBehavior />
                         </i:Interaction.Behaviors>
                     </Border>
                     <Border x:Name="RedTile" BorderThickness="1" Width="150" Height="150"
                             RelativePanel.AlignTopWith="GeekyTile" RelativePanel.LeftOf="GeekyTile" Margin="0,0,8,0"
                             Background="Red">
                         <i:Interaction.Behaviors>
-                            <behaviors:TiltBehavior />
+                            <uiBehaviors:TiltBehavior />
                         </i:Interaction.Behaviors>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE13A;" Foreground="White" FontSize="48" />
                     </Border>
@@ -43,7 +44,7 @@
                             RelativePanel.LeftOf="GeekyTile" RelativePanel.Below="RedTile" Margin="0,8,8,0"
                             Background="#FFFFE500">
                         <i:Interaction.Behaviors>
-                            <behaviors:TiltBehavior />
+                            <uiBehaviors:TiltBehavior />
                         </i:Interaction.Behaviors>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE13D;" Foreground="White" FontSize="26.667" />
                     </Border>
@@ -51,7 +52,7 @@
                             RelativePanel.RightOf="GeekyTile" RelativePanel.AlignBottomWith="GeekyTile"
                             Margin="8,0,0,0">
                         <i:Interaction.Behaviors>
-                            <behaviors:TiltBehavior />
+                            <uiBehaviors:TiltBehavior />
                         </i:Interaction.Behaviors>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7E3;" Foreground="White" FontSize="48" />
                     </Border>
@@ -59,7 +60,7 @@
                             RelativePanel.RightOf="GeekyTile" RelativePanel.Below="" RelativePanel.LeftOf=""
                             Margin="8,0,0,8" RelativePanel.Above="CyanTile" Background="#FF30D11F">
                         <i:Interaction.Behaviors>
-                            <behaviors:TiltBehavior />
+                            <uiBehaviors:TiltBehavior />
                         </i:Interaction.Behaviors>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE006;" Foreground="White" FontSize="26.667" />
                     </Border>
@@ -69,9 +70,9 @@
             <PivotItem Header="Loading">
                 <Grid>
                     <ToggleButton Content="ToggleIsLoading" Margin="-8,0,0,0" IsChecked="{Binding IsBusy, Mode=TwoWay}"></ToggleButton>
-                    <geekyTool:Loading IsLoading="{Binding IsBusy}" LoadingHorizontalAlignment="Left" LoadingVerticalAlignment="Bottom"
+                    <ui:Loading IsLoading="{Binding IsBusy}" LoadingHorizontalAlignment="Left" LoadingVerticalAlignment="Bottom"
                                        LoadingBackground="White" LoadingOpacity="0.5">
-                        <geekyTool:Loading.LoadingContent>
+                        <ui:Loading.LoadingContent>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Padding="12">
                                     <Grid Margin="0,0,8,0">
@@ -81,12 +82,12 @@
                                     <TextBlock Text="You can go to drink a coffee, we are working on it :)" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </DataTemplate>
-                        </geekyTool:Loading.LoadingContent>
-                    </geekyTool:Loading>
+                        </ui:Loading.LoadingContent>
+                    </ui:Loading>
                 </Grid>
             </PivotItem>
         </Pivot>
-        <geekyTool:Dialog Title="Title" IsOpen="{Binding IsOpen, Mode=TwoWay}" Background="#212121">
+        <ui:Dialog Title="Title" IsOpen="{Binding IsOpen, Mode=TwoWay}" Background="#212121">
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -136,7 +137,7 @@
                     </ListView>
                 </Grid>
             </Grid>
-        </geekyTool:Dialog>
+        </ui:Dialog>
     </Grid>
 </base:PageBase>
 

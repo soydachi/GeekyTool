@@ -1,4 +1,4 @@
-﻿namespace GeekyTool
+﻿namespace GeekyTool.UI
 {
     public class AdaptiveImageSource
     {

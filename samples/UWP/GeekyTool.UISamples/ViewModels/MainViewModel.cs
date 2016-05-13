@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Windows.UI.Xaml.Navigation;
 using GeekyTool.Base;
 using GeekyTool.Services;
+using GeekyTool.UI;
 
 namespace GeekyTool.UISamples.ViewModels
 {

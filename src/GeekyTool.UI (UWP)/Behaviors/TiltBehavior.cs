@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Input;
 using Microsoft.Xaml.Interactivity;
 
-namespace GeekyTool.Behaviors
+namespace GeekyTool.UI.Behaviors
 {
     // This implementation is based on what you can found in https://english.r2d2rigo.es/2016/01/26/implementing-a-tilt-effect-behavior-for-uwp-with-windows-composition/
     public class TiltBehavior : Behavior

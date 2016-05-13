@@ -3,7 +3,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 
-namespace GeekyTool.Helpers
+namespace GeekyTool.UI
 {
     public class FlyoutHelper
     {

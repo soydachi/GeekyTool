@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Media;
 
 // The Templated Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234235
 
-namespace GeekyTool
+namespace GeekyTool.UI
 {
     [TemplatePart(Name = PART_ROOT_BORDER, Type = typeof(Border))]
     [TemplatePart(Name = PART_ROOT_GRID, Type = typeof(Grid))]

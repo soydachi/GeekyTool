@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace GeekyTool
+namespace GeekyTool.UI
 {
     public class AdaptiveImage : ContentControl
     {

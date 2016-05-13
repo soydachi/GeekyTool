@@ -5,7 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Xaml.Interactivity;
 
-namespace GeekyTool.Behaviors
+namespace GeekyTool.UI.Behaviors
 {
     public class EnumStateBehavior : DependencyObject, IBehavior
     {

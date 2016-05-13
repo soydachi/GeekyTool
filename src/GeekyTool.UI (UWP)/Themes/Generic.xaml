@@ -2,17 +2,17 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="using:GeekyTool.Converters"
-    xmlns:geekyTool="using:GeekyTool">
+    xmlns:ui="using:GeekyTool.UI">
 
     <converters:ColorContrastConverter x:Key="ColorContrast" />
     <x:String x:Key="SettingsFlyoutBackButtonGlyph">&#xE0BA;</x:String>
 
-    <Style TargetType="geekyTool:Dialog">
+    <Style TargetType="ui:Dialog">
         <Setter Property="IsOpen" Value="False" />
         <Setter Property="BackButtonVisibility" Value="Collapsed" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="geekyTool:Dialog">
+                <ControlTemplate TargetType="ui:Dialog">
                     <Popup x:Name="PART_RootPopup" IsLightDismissEnabled="False" IsOpen="{TemplateBinding IsOpen}">
                         <Grid x:Name="PART_RootGrid" Background="#72000000">
                             <Border x:Name="PART_BannerBorder" BorderBrush="{TemplateBinding BorderBrush}"

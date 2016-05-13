@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using GeekyTool.Extensions;
 
-namespace GeekyTool
+namespace GeekyTool.UI
 {
     public class Loading : ContentControl
     {
