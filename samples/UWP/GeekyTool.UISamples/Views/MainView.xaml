@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:base="using:GeekyTool.Base"
-    xmlns:geekyTool="using:GeekyTool"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:ui="using:GeekyTool.UI"
@@ -69,7 +68,7 @@
             </PivotItem>
             <PivotItem Header="Loading">
                 <Grid>
-                    <ToggleButton Content="ToggleIsLoading" Margin="-8,0,0,0" IsChecked="{Binding IsBusy, Mode=TwoWay}"></ToggleButton>
+                    <ToggleButton Content="ToggleIsLoading" Command="{Binding ShowLoadingDialog}"></ToggleButton>
                     <ui:Loading IsLoading="{Binding IsBusy}" LoadingHorizontalAlignment="Left" LoadingVerticalAlignment="Bottom"
                                        LoadingBackground="White" LoadingOpacity="0.5">
                         <ui:Loading.LoadingContent>
