@@ -87,20 +87,44 @@ namespace GeekyTool.Services
                     {
                         return UnknownPageKey;
                     }
-
-                    var currentType = frame.Content.GetType();
-
-                    if (pagesByKey.All(p => p.Value != currentType))
-                    {
-                        return UnknownPageKey;
-                    }
-
-                    var item = pagesByKey.FirstOrDefault(
-                        i => i.Value == currentType);
-
-                    return item.Key;
+                    
+                    return GetCurrentPageName();
                 }
             }
+        }
+
+        public string GetCurrentPageName()
+        {
+            var frame = navigationFrame ?? (Frame)Window.Current.Content;
+
+            if (frame == null)
+                return UnknownPageKey;
+
+            var currentType = frame.Content.GetType();
+
+            if (pagesByKey.All(p => p.Value != currentType))
+            {
+                return UnknownPageKey;
+            }
+
+            return (pagesByKey.FirstOrDefault(i => i.Value == currentType)).Key;
+        }
+
+        public Type GetCurrentPage()
+        {
+            var frame = navigationFrame ?? (Frame)Window.Current.Content;
+
+            if (frame == null)
+                return null;
+
+            var currentType = frame.Content.GetType();
+
+            if (pagesByKey.All(p => p.Value != currentType))
+            {
+                return null;
+            }
+
+            return (pagesByKey.FirstOrDefault(i => i.Value == currentType)).Value;
         }
 
         public void Configure(string key, Type pageType)

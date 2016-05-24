@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -92,6 +93,11 @@ namespace GeekyTool.Messaging
 
             var weakAction = new WeakDelegate(callback);
             callbacks.Add(weakAction);
+        }
+
+        public int Count()
+        {
+            return callbacks.Count();
         }
 
         /// <summary>
