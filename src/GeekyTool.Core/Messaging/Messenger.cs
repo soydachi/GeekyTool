@@ -50,6 +50,17 @@ namespace GeekyTool.Messaging
             }
         }
 
+        /// <summary> 
+        /// Notify all subscribers who have (implicitly) registered with the default token. 
+        /// </summary> 
+        /// <typeparam name="T">Type of message.</typeparam> 
+        /// <param name="message">Message.</param> 
+        public void Publish<T>(T message)
+        {
+            Publish(message, DefaultToken);
+        }
+
+
         /// <summary>
         /// Notify all subscribers who have registered with a specific token.
         /// </summary>
@@ -68,7 +79,7 @@ namespace GeekyTool.Messaging
             var sw = Stopwatch.StartNew();
 #endif
 
-            Type messageType = typeof(T);
+            Type messageType = typeof (T);
             lock (messagingDictionaryLock)
             {
                 if (messaging.ContainsKey(token))
@@ -83,43 +94,6 @@ namespace GeekyTool.Messaging
                 else
                 {
                     Debug.WriteLine($"No subscribers for type {messageType}.");
-                }
-#endif
-            }
-#if DEBUG
-            sw.Stop();
-            Debug.WriteLine($"Routing took {sw.ElapsedMilliseconds} ms.");
-#endif
-        }
-
-        /// <summary>
-        /// Notify all subscribers who have registered with a specific token.
-        /// </summary>
-        /// <param name="token">Token.</param>
-        /// <exception cref="ArgumentNullException">
-        /// Dispatched when <paramref name="token" /> equal <c>null</c>.
-        /// </exception>
-        public void Publish(object token)
-        {
-            if (token == null)
-                throw new ArgumentNullException(MemberResolver.Resolve(() => token).Name);
-
-#if DEBUG
-            var sw = Stopwatch.StartNew();
-#endif
-
-            lock (messagingDictionaryLock)
-            {
-                if (messaging.ContainsKey(token))
-                {
-                    Debug.WriteLine($"Routing event with token {token}.");
-                    var messageBus = messaging[token];
-                    messageBus.Route();
-                }
-#if DEBUG
-                else
-                {
-                    Debug.WriteLine($"No subscribers for {token}.");
                 }
 #endif
             }
@@ -184,7 +158,7 @@ namespace GeekyTool.Messaging
 
             if (token == null)
                 throw new ArgumentNullException(MemberResolver.Resolve(() => token).Name);
-            
+
             lock (messagingDictionaryLock)
             {
                 if (!messaging.ContainsKey(token))
@@ -247,7 +221,7 @@ namespace GeekyTool.Messaging
 
             if (token == null)
                 throw new ArgumentNullException(MemberResolver.Resolve(() => token).Name);
-            
+
             lock (messagingDictionaryLock)
             {
                 if (!messaging.ContainsKey(token))
@@ -278,7 +252,7 @@ namespace GeekyTool.Messaging
 
             if (token == null)
                 throw new ArgumentNullException(MemberResolver.Resolve(() => token).Name);
-            
+
             lock (messagingDictionaryLock)
             {
                 if (!messaging.ContainsKey(token))
@@ -339,7 +313,7 @@ namespace GeekyTool.Messaging
                 throw new ArgumentNullException(MemberResolver.Resolve(() => callback).Name);
             if (token == null)
                 throw new ArgumentNullException(MemberResolver.Resolve(() => token).Name);
-            
+
             lock (messagingDictionaryLock)
             {
                 if (messaging.ContainsKey(token))
@@ -388,7 +362,7 @@ namespace GeekyTool.Messaging
                 throw new ArgumentNullException(MemberResolver.Resolve(() => callback).Name);
             if (token == null)
                 throw new ArgumentNullException(MemberResolver.Resolve(() => token).Name);
-            
+
             lock (messagingDictionaryLock)
             {
                 if (messaging.ContainsKey(token))
