@@ -8,6 +8,15 @@ namespace GeekyTool.Messaging
     /// </summary>
     public interface IMessenger
     {
+        // <summary>
+        /// Notify all subscribers who have registered with a specific token.
+        /// </summary>
+        /// <param name="token">Token.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Dispatched when <paramref name="token" /> equal <c>null</c>.
+        /// </exception>
+        void Publish(string token);
+
         /// <summary> 
         /// Notify all subscribers who have (implicitly) registered with the default token. 
         /// </summary> 

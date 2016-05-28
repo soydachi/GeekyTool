@@ -50,6 +50,43 @@ namespace GeekyTool.Messaging
             }
         }
 
+        /// <summary>
+        /// Notify all subscribers who have registered with a specific token.
+        /// </summary>
+        /// <param name="token">Token.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Dispatched when <paramref name="token" /> equal <c>null</c>.
+        /// </exception>
+        public void Publish(string token)
+        {
+            if (token == null)
+                throw new ArgumentNullException(MemberResolver.Resolve(() => token).Name);
+
+#if DEBUG
+            var sw = Stopwatch.StartNew();
+#endif
+
+            lock (messagingDictionaryLock)
+            {
+                if (messaging.ContainsKey(token))
+                {
+                    Debug.WriteLine($"Routing event with token {token}.");
+                    var messageBus = messaging[token];
+                    messageBus.Route();
+                }
+#if DEBUG
+                else
+                {
+                    Debug.WriteLine($"No subscribers for {token}.");
+                }
+#endif
+            }
+#if DEBUG
+            sw.Stop();
+            Debug.WriteLine($"Routing took {sw.ElapsedMilliseconds} ms.");
+#endif
+        }
+
         /// <summary> 
         /// Notify all subscribers who have (implicitly) registered with the default token. 
         /// </summary> 
