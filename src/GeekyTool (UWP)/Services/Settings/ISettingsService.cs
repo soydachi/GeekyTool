@@ -2,8 +2,8 @@
 {
     public interface ISettingsService
     {
-        void Save<T>(string key, T value);
-        T Retrieve<T>(string key);
-        void Clear();
+        void Save<T>(string key, T value, bool roamSetting = default(bool));
+        T Retrieve<T>(string key, bool roamSettings = default(bool));
+        void Clear(bool roamSettings = default(bool));
     }
 }

@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using Windows.Storage;
 
-namespace GeekyTool.Services
+namespace GeekyTool.Helpers
 {
-    public class SettingsService : ISettingsService
+    public class Settings
     {
-        public void Save<T>(string key, T value, bool roamSetting)
+        public static void Save<T>(string key, T value, bool roamSetting = default(bool))
         {
             if (string.IsNullOrEmpty(key) || value == null) throw new ArgumentNullException();
 
-            var settingsContainer = roamSetting 
-                ? ApplicationData.Current.RoamingSettings 
+            var settingsContainer = roamSetting
+                ? ApplicationData.Current.RoamingSettings
                 : ApplicationData.Current.LocalSettings;
 
             if (settingsContainer.Values.ContainsKey(key))
@@ -20,12 +20,12 @@ namespace GeekyTool.Services
                 settingsContainer.Values.Add(new KeyValuePair<string, object>(key, value));
         }
 
-        public T Retrieve<T>(string key, bool roamSetting)
+        public static T Retrieve<T>(string key, bool roamSetting = default(bool))
         {
             if (string.IsNullOrEmpty(key)) throw new ArgumentNullException();
 
-            var settingsContainer = roamSetting 
-                ? ApplicationData.Current.RoamingSettings 
+            var settingsContainer = roamSetting
+                ? ApplicationData.Current.RoamingSettings
                 : ApplicationData.Current.LocalSettings;
 
             if (settingsContainer.Values.ContainsKey(key))
@@ -33,7 +33,7 @@ namespace GeekyTool.Services
             return default(T);
         }
 
-        public void Clear(bool roamSetting)
+        public static void Clear(bool roamSetting = default(bool))
         {
             var settingsContainer = roamSetting
                 ? ApplicationData.Current.RoamingSettings
