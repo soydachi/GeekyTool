@@ -21,8 +21,9 @@ namespace GeekyTool.UISamples.ViewModels
             }
 
             ShowDialogCommand = new DelegateCommand(ShowDialogCommandDelegate);
+            ShowLoadingDialog = new DelegateCommandAsync(ShowLoadingDialogDelegateAsync);
         }
-
+        
         public Task OnNavigatedFrom(NavigationEventArgs e)
         {
             return Task.CompletedTask;
@@ -69,6 +70,15 @@ namespace GeekyTool.UISamples.ViewModels
         private void ShowDialogCommandDelegate()
         {
             IsOpen = true;
+        }
+
+        public ICommand ShowLoadingDialog { get; private set; }
+        
+        private async Task ShowLoadingDialogDelegateAsync()
+        {
+            IsBusy = true;
+            await Task.Delay(3000);
+            IsBusy = false;
         }
     }
 }

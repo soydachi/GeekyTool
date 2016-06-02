@@ -12,7 +12,7 @@ namespace GeekyTool.Helpers
             for (int i = 0; i < count; i++)
             {
                 DependencyObject current = Windows.UI.Xaml.Media.VisualTreeHelper.GetChild(startNode, i);
-                if ((current.GetType()) == typeof(T) || (current.GetType().GetTypeInfo().IsSubclassOf(typeof(T))))
+                if (current.GetType() == typeof(T) || current.GetType().GetTypeInfo().IsSubclassOf(typeof(T)))
                 {
                     T asType = (T)current;
                     results.Add(asType);

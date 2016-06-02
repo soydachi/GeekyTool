@@ -8,6 +8,22 @@ namespace GeekyTool.Messaging
     /// </summary>
     public interface IMessenger
     {
+        // <summary>
+        /// Notify all subscribers who have registered with a specific token.
+        /// </summary>
+        /// <param name="token">Token.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Dispatched when <paramref name="token" /> equal <c>null</c>.
+        /// </exception>
+        void Publish(string token);
+
+        /// <summary> 
+        /// Notify all subscribers who have (implicitly) registered with the default token. 
+        /// </summary> 
+        /// <typeparam name="T">Type of message.</typeparam> 
+        /// <param name="message">Message.</param> 
+        void Publish<T>(T message);
+
         /// <summary>
         /// Notify all object who suscribed with this token and message type.
         /// </summary>
@@ -15,12 +31,6 @@ namespace GeekyTool.Messaging
         /// <param name="s">Message.</param>
         /// <param name="token">Token.</param>
         void Publish<T>(T message, object token);
-
-        /// <summary>
-        /// Notify all object who registred implicit with the token
-        /// </summary>
-        /// <param name="token">Token.</param>
-        void Publish(object token);
 
         /// <summary>
         /// Register a Callback-Method for certain message and a certain Token.

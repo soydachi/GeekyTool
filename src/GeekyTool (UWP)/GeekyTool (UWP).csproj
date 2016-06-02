@@ -133,12 +133,15 @@
     <Compile Include="Extensions\EncodeExtensions.cs" />
     <Compile Include="Extensions\StorageFileExtensions.cs" />
     <Compile Include="Extensions\XamlExtensions.cs" />
+    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\VisualTreeHelper.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Navigation\NavigationService.cs" />
     <Compile Include="Services\PasswordManager\IPasswordManager.cs" />
     <Compile Include="Services\PasswordManager\PasswordManager.cs" />
+    <Compile Include="Services\Settings\ISettingsService.cs" />
+    <Compile Include="Services\Settings\SettingsService.cs" />
     <EmbeddedResource Include="Properties\GeekyTool.UWP.rd.xml" />
   </ItemGroup>
   <ItemGroup>

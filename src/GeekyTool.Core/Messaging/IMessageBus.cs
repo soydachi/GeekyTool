@@ -59,6 +59,12 @@ namespace GeekyTool.Messaging
         void RemoveCallback<T>(Action<T> callback);
 
         /// <summary>
+        /// Get the callback count from the collection
+        /// </summary>
+        /// <returns></returns>
+        int Count();
+
+        /// <summary>
         /// Removes all callback methods of an object from the collection.
         /// </summary>
         /// <param name="target">The object that has subscribed to notifications.</param>
