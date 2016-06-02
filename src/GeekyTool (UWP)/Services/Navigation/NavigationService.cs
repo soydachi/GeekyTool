@@ -151,11 +151,15 @@ namespace GeekyTool.Services
                 UpdateAppViewBackButtonVisibility(frame);
         }
 
-        public IList<PageStackEntry> GetBackStack()
+        public IList<string> GetBackStack()
         {
+            var entries = new List<string>();
             var frame = navigationFrame ?? (Frame)Window.Current.Content;
 
-            return frame.BackStack;
+            if (frame?.BackStackDepth > 0)
+                entries.AddRange(frame.BackStack.Select(entry => entry.SourcePageType.Name));
+
+            return entries;
         }
 
         private void UpdateAppViewBackButtonVisibility(Frame frame)
