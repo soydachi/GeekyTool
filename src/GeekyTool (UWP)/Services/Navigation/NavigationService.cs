@@ -186,6 +186,23 @@ namespace GeekyTool.Services
             return entries;
         }
 
+        public void RemoveAllPagesUntil(string pageName)
+        {
+            var frame = navigationFrame ?? (Frame)Window.Current.Content;
+
+            for (int i = 1; i < frame.BackStack.Count; i++)
+            {
+                PageStackEntry page = frame.BackStack[i];
+                if (page.SourcePageType.Name.Equals(pageName))
+                {
+                    while (frame.BackStack.Count > i + 1)
+                        frame.BackStack.RemoveAt(frame.BackStack.Count - 1);
+                    frame.GoBack();
+                    break;
+                }
+            }
+        }
+
         private void UpdateAppViewBackButtonVisibility(Frame frame)
         {
             // Each time a navigation event occurs, update the Back button's visibility
