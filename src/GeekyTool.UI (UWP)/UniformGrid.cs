@@ -3,7 +3,7 @@ using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace GeekyTool
+namespace GeekyTool.UI
 {
     /// <summary>
 	/// Panel which arranges children in a grid with all equal cell sizes.

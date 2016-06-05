@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 // ReSharper disable once CheckNamespace
 namespace GeekyTool.Services
@@ -85,20 +87,44 @@ namespace GeekyTool.Services
                     {
                         return UnknownPageKey;
                     }
-
-                    var currentType = frame.Content.GetType();
-
-                    if (pagesByKey.All(p => p.Value != currentType))
-                    {
-                        return UnknownPageKey;
-                    }
-
-                    var item = pagesByKey.FirstOrDefault(
-                        i => i.Value == currentType);
-
-                    return item.Key;
+                    
+                    return GetCurrentPageName();
                 }
             }
+        }
+
+        public string GetCurrentPageName()
+        {
+            var frame = navigationFrame ?? (Frame)Window.Current.Content;
+
+            if (frame == null)
+                return UnknownPageKey;
+
+            var currentType = frame.Content.GetType();
+
+            if (pagesByKey.All(p => p.Value != currentType))
+            {
+                return UnknownPageKey;
+            }
+
+            return (pagesByKey.FirstOrDefault(i => i.Value == currentType)).Key;
+        }
+
+        public Type GetCurrentPage()
+        {
+            var frame = navigationFrame ?? (Frame)Window.Current.Content;
+
+            if (frame == null)
+                return null;
+
+            var currentType = frame.Content.GetType();
+
+            if (pagesByKey.All(p => p.Value != currentType))
+            {
+                return null;
+            }
+
+            return (pagesByKey.FirstOrDefault(i => i.Value == currentType)).Value;
         }
 
         public void Configure(string key, Type pageType)
@@ -125,10 +151,13 @@ namespace GeekyTool.Services
         /// <summary>
         ///     Removes the BackStack history of navigation.
         /// </summary>
-        public void ClearNavigationHistory()
+        public void ClearNavigationHistory(bool appViewBackButtonVisibility = false)
         {
             var frame = navigationFrame ?? (Frame)Window.Current.Content;
             frame.BackStack.Clear();
+
+            if (appViewBackButtonVisibility)
+                UpdateAppViewBackButtonVisibility(frame);
         }
 
         /// <summary>
@@ -137,10 +166,50 @@ namespace GeekyTool.Services
         /// <summary>
         ///     Remove the last page of the BackStack from the navigation history
         /// </summary>
-        public void RemoveLastPageFromNavigationHistory()
+        public void RemoveLastPageFromNavigationHistory(bool appViewBackButtonVisibility = false)
         {
             var frame = navigationFrame ?? (Frame)Window.Current.Content;
             frame.BackStack.Remove(frame.BackStack.Last());
+
+            if (appViewBackButtonVisibility)
+                UpdateAppViewBackButtonVisibility(frame);
+        }
+
+        public IList<string> GetBackStack()
+        {
+            var entries = new List<string>();
+            var frame = navigationFrame ?? (Frame)Window.Current.Content;
+
+            if (frame?.BackStackDepth > 0)
+                entries.AddRange(frame.BackStack.Select(entry => entry.SourcePageType.Name));
+
+            return entries;
+        }
+
+        public void RemoveAllPagesUntil(string pageName)
+        {
+            var frame = navigationFrame ?? (Frame)Window.Current.Content;
+
+            for (int i = 1; i < frame.BackStack.Count; i++)
+            {
+                PageStackEntry page = frame.BackStack[i];
+                if (page.SourcePageType.Name.Equals(pageName))
+                {
+                    while (frame.BackStack.Count > i + 1)
+                        frame.BackStack.RemoveAt(frame.BackStack.Count - 1);
+                    frame.GoBack();
+                    break;
+                }
+            }
+        }
+
+        private void UpdateAppViewBackButtonVisibility(Frame frame)
+        {
+            // Each time a navigation event occurs, update the Back button's visibility
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                frame.CanGoBack
+                    ? AppViewBackButtonVisibility.Visible
+                    : AppViewBackButtonVisibility.Collapsed;
         }
     }
 }

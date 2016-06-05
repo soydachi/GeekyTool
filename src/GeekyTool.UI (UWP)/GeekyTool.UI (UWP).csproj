@@ -7,7 +7,7 @@
     <ProjectGuid>{4E8BC542-1629-48F3-8581-1A8A7037F078}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GeekyTool</RootNamespace>
+    <RootNamespace>GeekyTool.UI</RootNamespace>
     <AssemblyName>GeekyTool.UI</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
@@ -107,19 +107,25 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdaptiveImage\AdaptiveImage.cs" />
+    <Compile Include="AdaptiveImage\AdaptiveImageSource.cs" />
+    <Compile Include="Behaviors\EnumStateBehavior.cs" />
+    <Compile Include="Behaviors\TiltBehavior.cs" />
     <Compile Include="Dialog.cs" />
+    <Compile Include="Helpers\FlyoutHelper.cs" />
+    <Compile Include="Loading\Loading.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UniformGrid.cs" />
     <EmbeddedResource Include="Properties\GeekyTool.UWP.UI.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GeekyTool.Core\GeekyTool.Core.csproj">
-      <Project>{113dbc6b-abdf-4f6e-b55b-d4f3efa38da7}</Project>
-      <Name>GeekyTool.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GeekyTool %28UWP%29\GeekyTool %28UWP%29.csproj">
       <Project>{406c87b7-74a4-444d-b8fa-9a9dbb10c957}</Project>
       <Name>GeekyTool %28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GeekyTool.Core\GeekyTool.Core.csproj">
+      <Project>{113dbc6b-abdf-4f6e-b55b-d4f3efa38da7}</Project>
+      <Name>GeekyTool.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -127,9 +133,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

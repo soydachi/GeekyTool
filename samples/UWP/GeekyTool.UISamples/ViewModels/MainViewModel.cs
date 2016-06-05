@@ -1,9 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml.Navigation;
 using GeekyTool.Base;
 using GeekyTool.Services;
+using GeekyTool.UI;
 
 namespace GeekyTool.UISamples.ViewModels
 {
@@ -19,8 +21,9 @@ namespace GeekyTool.UISamples.ViewModels
             }
 
             ShowDialogCommand = new DelegateCommand(ShowDialogCommandDelegate);
+            ShowLoadingDialog = new DelegateCommandAsync(ShowLoadingDialogDelegateAsync);
         }
-
+        
         public Task OnNavigatedFrom(NavigationEventArgs e)
         {
             return Task.CompletedTask;
@@ -28,7 +31,17 @@ namespace GeekyTool.UISamples.ViewModels
 
         public Task OnNavigatedTo(NavigationEventArgs e)
         {
+            AdaptiveImageSource = new AdaptiveImageSource("http://az619519.vo.msecnd.net/files/GlacierNP_EN-US10207543560_1920x1200.jpg", "https://raw.githubusercontent.com/dachibox/GeekyTool/master/assets/GeekyTool.png");
+
             return Task.CompletedTask;
+        }
+
+
+        private AdaptiveImageSource adaptiveImageSource;
+        public AdaptiveImageSource AdaptiveImageSource
+        {
+            get { return adaptiveImageSource; }
+            set { Set(ref adaptiveImageSource, value); }
         }
 
         private ObservableCollection<string> items;
@@ -57,6 +70,15 @@ namespace GeekyTool.UISamples.ViewModels
         private void ShowDialogCommandDelegate()
         {
             IsOpen = true;
+        }
+
+        public ICommand ShowLoadingDialog { get; private set; }
+        
+        private async Task ShowLoadingDialogDelegateAsync()
+        {
+            IsBusy = true;
+            await Task.Delay(3000);
+            IsBusy = false;
         }
     }
 }

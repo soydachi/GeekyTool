@@ -8,11 +8,6 @@ namespace GeekyTool.Base
     {
         private BaseViewModel viewModel;
 
-        public PageBase()
-        {
-            
-        }
-
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);

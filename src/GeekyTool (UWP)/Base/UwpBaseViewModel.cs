@@ -10,10 +10,10 @@ namespace GeekyTool.Base
     {
         protected CoreDispatcher MainDispatcher => Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher;
 
-        protected INavigationService NavigationService { get; set; }
+        public INavigationService NavigationService { get; set; }
 
         private ICommand goBackCommand;
-        protected ICommand GoBackCommand
+        public ICommand GoBackCommand
             => goBackCommand ?? (goBackCommand = new DelegateCommand(GoBackCommandDelegate));
 
         private void GoBackCommandDelegate()
@@ -22,7 +22,7 @@ namespace GeekyTool.Base
         }
 
         private ICommand goHomeCommand;
-        protected ICommand GoHomeCommand
+        public ICommand GoHomeCommand
             => goHomeCommand ?? (goHomeCommand = new DelegateCommand<string>(GoHomeCommandDelegate));
 
         protected virtual void GoHomeCommandDelegate(string pageName = "-- UNKNOWN --")

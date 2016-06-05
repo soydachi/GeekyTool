@@ -3,7 +3,7 @@
     public abstract class BaseViewModel : BindableBase
     {
         private bool isBusy;
-        protected bool IsBusy
+        public bool IsBusy
         {
             get { return isBusy; }
             set { Set(ref isBusy, value); }

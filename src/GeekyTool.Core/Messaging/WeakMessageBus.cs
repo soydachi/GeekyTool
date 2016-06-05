@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -52,6 +53,23 @@ namespace GeekyTool.Messaging
         /// <exception cref="ArgumentNullException">
         /// Dispatched when <paramref name="callback" /> is equal <c>null</c>.
         /// </exception>
+        public void AddCallback(Func<Task> callback)
+        {
+            if (callback == null)
+                throw new ArgumentNullException(MemberResolver.Resolve(() => callback).Name);
+
+            var weakAction = new WeakDelegate(callback);
+            callbacks.Add(weakAction);
+        }
+
+        /// <summary>
+        /// Adds a callback method to add to the collection.
+        /// </summary>
+        /// <typeparam name="T">Type of message.</typeparam>
+        /// <param name="callback">Callback-Method.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Dispatched when <paramref name="callback" /> is equal <c>null</c>.
+        /// </exception>
         public void AddCallback<T>(Action<T> callback)
         {
             if (callback == null)
@@ -59,6 +77,27 @@ namespace GeekyTool.Messaging
 
             var weakAction = new WeakDelegate(callback);
             callbacks.Add(weakAction);
+        }
+
+        /// <summary>
+        /// Adds a callback method to add to the collection.
+        /// </summary>
+        /// <param name="callback">Callback-Method.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Dispatched when <paramref name="callback" /> is equal <c>null</c>.
+        /// </exception>
+        public void AddCallback(Action callback)
+        {
+            if (callback == null)
+                throw new ArgumentNullException(MemberResolver.Resolve(() => callback).Name);
+
+            var weakAction = new WeakDelegate(callback);
+            callbacks.Add(weakAction);
+        }
+
+        public int Count()
+        {
+            return callbacks.Count();
         }
 
         /// <summary>
@@ -96,12 +135,54 @@ namespace GeekyTool.Messaging
         /// <summary>
         /// Removes a callback method from the collection.
         /// </summary>
+        /// <param name="callback">Callback-Method.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Dispatched when <paramref name="callback" /> is equal <c>null</c>.
+        /// </exception>
+        public void RemoveCallback(Func<Task> callback)
+        {
+            if (callback == null)
+                throw new ArgumentNullException(MemberResolver.Resolve(() => callback).Name);
+
+            int count = callbacks.RemoveWhere(cb =>
+            {
+                bool sameTarget = Object.ReferenceEquals(cb.TargetReference.Target, callback.Target);
+                bool sameMethod = cb.Method == callback.GetMethodInfo();
+                return sameTarget && sameMethod;
+            });
+            DebuggingOutput(count);
+        }
+
+        /// <summary>
+        /// Removes a callback method from the collection.
+        /// </summary>
         /// <typeparam name="T">Type of message.</typeparam>
         /// <param name="callback">Callback-Method.</param>
         /// <exception cref="ArgumentNullException">
         /// Dispatched when <paramref name="callback" /> is equal <c>null</c>.
         /// </exception>
         public void RemoveCallback<T>(Action<T> callback)
+        {
+            if (callback == null)
+                throw new ArgumentNullException(MemberResolver.Resolve(() => callback).Name);
+
+            int count = callbacks.RemoveWhere(cb =>
+            {
+                bool sameTarget = Object.ReferenceEquals(cb.TargetReference.Target, callback.Target);
+                bool sameMethod = cb.Method == callback.GetMethodInfo();
+                return sameTarget && sameMethod;
+            });
+            DebuggingOutput(count);
+        }
+
+        /// <summary>
+        /// Removes a callback method from the collection.
+        /// </summary>
+        /// <param name="callback">Callback-Method.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Dispatched when <paramref name="callback" /> is equal <c>null</c>.
+        /// </exception>
+        public void RemoveCallback(Action callback)
         {
             if (callback == null)
                 throw new ArgumentNullException(MemberResolver.Resolve(() => callback).Name);
@@ -131,10 +212,45 @@ namespace GeekyTool.Messaging
             {
                 var reference = item.TargetReference;
                 var method = item.Method;
-                if (item.IsExecutable)
+
+                if (method.ReturnType == typeof (Task))
+                {
+                    var callback = (Func<T, Task>)item.CreateDelegate<Func<T, Task>>();
+                    callback(message);
+                }
+                else if (item.IsExecutable)
                 {
                     var callback = (Action<T>)item.CreateDelegate<Action<T>>();
                     callback(message);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Performs all managed callback methods. Here are references to objects that have 
+        /// already been cleaned up by the garbage collection.
+        /// </summary>
+        /// <param name="s">Message.</param>
+        public void Route()
+        {
+            if (callbacks.Count < 1)
+                return;
+
+            CleanCallbackSet();
+            foreach (var item in callbacks)
+            {
+                var reference = item.TargetReference;
+                var method = item.Method;
+
+                if (method.ReturnType == typeof (Task) && item.IsExecutable)
+                {
+                    var callback = (Func<Task>)item.CreateDelegate<Func<Task>>();
+                    callback();
+                }
+                else if (item.IsExecutable)
+                {
+                    var callback = (Action)item.CreateDelegate<Action>();
+                    callback();
                 }
             }
         }
