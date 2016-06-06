@@ -205,7 +205,7 @@ namespace GeekyTool.Messaging
 
                 var messageBus = messaging[token];
 
-                if (messageBus.Count() == 0)
+                //if (messageBus.Count() == 0)
                     messageBus.AddCallback(callback);
             }
         }
@@ -236,7 +236,7 @@ namespace GeekyTool.Messaging
 
                 var messageBus = messaging[token];
 
-                if (messageBus.Count() == 0)
+                //if (messageBus.Count() == 0)
                     messageBus.AddCallback(callback);
             }
         }
@@ -268,7 +268,7 @@ namespace GeekyTool.Messaging
 
                 var messageBus = messaging[token];
 
-                if (messageBus.Count() == 0)
+                //if (messageBus.Count() == 0)
                     messageBus.AddCallback(callback);
             }
         }
@@ -299,7 +299,7 @@ namespace GeekyTool.Messaging
 
                 var messageBus = messaging[token];
 
-                if (messageBus.Count() == 0)
+                //if (messageBus.Count() == 0)
                     messageBus.AddCallback(callback);
             }
         }
