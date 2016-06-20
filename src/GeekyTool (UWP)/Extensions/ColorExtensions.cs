@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
@@ -11,24 +12,50 @@ namespace GeekyTool.Extensions
     {
         public static SolidColorBrush GetBrushColorFromHexa(this string hexaColor)
         {
+            const string validRegex = @"[#]?[a-zA-Z0-9]{8}|[#]?[a-zA-Z0-9]{6}";
+
+            if (!new Regex(validRegex).IsMatch(hexaColor))
+                throw new FormatException("hexaColor incorrect format");
+
+            hexaColor = hexaColor.Replace("#", string.Empty);
+
+            if (hexaColor.Length == 8)
+            {
+                return new SolidColorBrush(
+                    GetColorFromHexa(hexaColor)
+                );
+            }
+
             return new SolidColorBrush(
-                Color.FromArgb(
-                    255,
-                    Convert.ToByte(hexaColor.Substring(1, 2), 16),
-                    Convert.ToByte(hexaColor.Substring(3, 2), 16),
-                    Convert.ToByte(hexaColor.Substring(5, 2), 16)
-                )
+                GetColorFromHexa(hexaColor)
             );
         }
 
         public static Color GetColorFromHexa(this string hexaColor)
         {
+            const string validRegex = @"[#]?[a-zA-Z0-9]{8}|[#]?[a-zA-Z0-9]{6}";
+
+            if (!new Regex(validRegex).IsMatch(hexaColor))
+                throw new FormatException("hexaColor incorrect format");
+
+            hexaColor = hexaColor.Replace("#", string.Empty);
+
+            if (hexaColor.Length == 8)
+            {
+                return Color.FromArgb(
+                    Convert.ToByte(hexaColor.Substring(0, 2), 16),
+                    Convert.ToByte(hexaColor.Substring(2, 2), 16),
+                    Convert.ToByte(hexaColor.Substring(4, 2), 16),
+                    Convert.ToByte(hexaColor.Substring(6, 2), 16)
+                );
+            }
+
             return Color.FromArgb(
                 255,
-                Convert.ToByte(hexaColor.Substring(1, 2), 16),
-                Convert.ToByte(hexaColor.Substring(3, 2), 16),
-                Convert.ToByte(hexaColor.Substring(5, 2), 16)
-                );
+                Convert.ToByte(hexaColor.Substring(0, 2), 16),
+                Convert.ToByte(hexaColor.Substring(2, 2), 16),
+                Convert.ToByte(hexaColor.Substring(4, 2), 16)
+            );
         }
 
         public static async Task<Color> GetDominantColor(this StorageFile file)
