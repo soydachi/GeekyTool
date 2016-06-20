@@ -12,20 +12,6 @@ namespace GeekyTool.Extensions
     {
         public static SolidColorBrush GetBrushColorFromHexa(this string hexaColor)
         {
-            const string validRegex = @"[#]?[a-zA-Z0-9]{8}|[#]?[a-zA-Z0-9]{6}";
-
-            if (!new Regex(validRegex).IsMatch(hexaColor))
-                throw new FormatException("hexaColor incorrect format");
-
-            hexaColor = hexaColor.Replace("#", string.Empty);
-
-            if (hexaColor.Length == 8)
-            {
-                return new SolidColorBrush(
-                    GetColorFromHexa(hexaColor)
-                );
-            }
-
             return new SolidColorBrush(
                 GetColorFromHexa(hexaColor)
             );
