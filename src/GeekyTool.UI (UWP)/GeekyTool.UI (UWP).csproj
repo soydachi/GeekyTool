@@ -111,6 +111,7 @@
     <Compile Include="AdaptiveImage\AdaptiveImageSource.cs" />
     <Compile Include="Behaviors\EnumStateBehavior.cs" />
     <Compile Include="Behaviors\TiltBehavior.cs" />
+    <Compile Include="Behaviors\TrimTextBehavior.cs" />
     <Compile Include="Dialog.cs" />
     <Compile Include="Helpers\FlyoutHelper.cs" />
     <Compile Include="Loading\Loading.cs" />
