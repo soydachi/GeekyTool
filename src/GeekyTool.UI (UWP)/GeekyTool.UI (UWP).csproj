@@ -109,6 +109,7 @@
   <ItemGroup>
     <Compile Include="AdaptiveImage\AdaptiveImage.cs" />
     <Compile Include="AdaptiveImage\AdaptiveImageSource.cs" />
+    <Compile Include="Behaviors\ClearUglyTextBehavior.cs" />
     <Compile Include="Behaviors\EnumStateBehavior.cs" />
     <Compile Include="Behaviors\TiltBehavior.cs" />
     <Compile Include="Behaviors\TrimTextBehavior.cs" />

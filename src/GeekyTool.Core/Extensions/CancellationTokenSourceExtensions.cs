@@ -6,10 +6,12 @@ namespace GeekyTool.Extensions
 {
     public static class CancellationTokenSourceExtensions
     {
-        public static void ResetIfCancelled(this CancellationTokenSource cts)
+        public static CancellationTokenSource ResetIfCancelled(this CancellationTokenSource cts)
         {
             if (cts.IsCancellationRequested)
-                cts = new CancellationTokenSource();
+                return new CancellationTokenSource();
+            else
+                return cts;
         }
 
         public static CancellationTokenSource JoinWith(this CancellationToken ct, CancellationToken otherToken)
