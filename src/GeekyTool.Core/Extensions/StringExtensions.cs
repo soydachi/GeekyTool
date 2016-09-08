@@ -8,7 +8,7 @@ namespace GeekyTool.Extensions
     {
         public static string Clean(this string originalString)
         {
-            var removeCharSet = new HashSet<char>("?&^$#@!()+-,:;<>’\'\\/-_*".ToCharArray());
+            var removeCharSet = new HashSet<char>("?&^$#@!()+-,:;<>’\'\\/-_*\"".ToCharArray());
             var sb = new StringBuilder(originalString.Length);
 
             foreach (var x in originalString.ToCharArray().Where(c => !removeCharSet.Contains(c)))
