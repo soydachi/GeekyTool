@@ -8,6 +8,9 @@ namespace GeekyTool.Extensions
     {
         public static string Clean(this string originalString)
         {
+            if (originalString == null)
+                return string.Empty;
+
             var removeCharSet = new HashSet<char>("?&^$#@!()+-,:;<>’\'\\/-_*\"".ToCharArray());
             var sb = new StringBuilder(originalString.Length);
 
