@@ -169,7 +169,7 @@ namespace GeekyTool.Services
         public void RemoveLastPageFromNavigationHistory(bool appViewBackButtonVisibility = false)
         {
             var frame = navigationFrame ?? (Frame)Window.Current.Content;
-            frame.BackStack.Remove(frame.BackStack.Last());
+            frame.BackStack.Remove(frame.BackStack?.LastOrDefault());
 
             if (appViewBackButtonVisibility)
                 UpdateAppViewBackButtonVisibility(frame);

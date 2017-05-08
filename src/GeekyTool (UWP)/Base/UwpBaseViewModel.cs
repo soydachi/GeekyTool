@@ -27,8 +27,8 @@ namespace GeekyTool.Base
 
         protected virtual void GoHomeCommandDelegate(string pageName = "-- UNKNOWN --")
         {
-            NavigationService.NavigateTo(pageName);
             ((NavigationService)NavigationService).ClearNavigationHistory();
+            NavigationService.NavigateTo(pageName);
         }
 
         public virtual Task OnNavigatedFrom(NavigationEventArgs e)
